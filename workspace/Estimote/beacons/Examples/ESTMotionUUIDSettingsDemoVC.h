@@ -13,3 +13,5 @@
 - (id)initWithBeacon:(CLBeacon*)beacon;
 
 @end
+
+

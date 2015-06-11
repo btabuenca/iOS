@@ -2,8 +2,7 @@
 //  ESTProximityDemoVC.m
 //  Examples
 //
-//  Created by Grzegorz Krukiewicz-Gacek on 17.03.2014.
-//  Copyright (c) 2014 Estimote. All rights reserved.
+//  Bernardo Tabuenca
 //
 
 #import "ESTProximityDemoVC.h"
@@ -16,6 +15,7 @@
 
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *zoneLabel;
+
 
 @end
 
@@ -42,6 +42,8 @@
      */
     self.view.backgroundColor = [UIColor whiteColor];
     
+    
+    // Label 1
     self.zoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
                                                                100,
                                                                self.view.frame.size.width,
@@ -49,12 +51,16 @@
     self.zoneLabel.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:self.zoneLabel];
     
+    // Image
     self.imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,
                                                                    64,
                                                                    self.view.frame.size.width,
                                                                    self.view.frame.size.height - 64)];
     self.imageView.contentMode = UIViewContentModeCenter;
     [self.view addSubview:self.imageView];
+    
+    
+    
     
     /*
      * BeaconManager setup.
@@ -87,6 +93,85 @@
         
         self.zoneLabel.text     = [self textForProximity:firstBeacon.proximity];
         self.imageView.image    = [self imageForProximity:firstBeacon.proximity];
+        
+        NSLog(@"The code runs through here!");
+
+        
+        NSString *urlString = [NSString stringWithFormat:@"https://learn-beacon.appspot.com/_ah/api/layerendpoint/v1/layer"];
+        
+        NSURL *url = [NSURL URLWithString:urlString];
+        
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        
+        NSError *error;
+        
+        NSMutableArray *json = (NSMutableArray*)[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+        
+        NSLog(@"%@", json);
+        
+
+        
+        NSError *e = nil;
+        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
+        
+        if (!jsonArray) {
+            NSLog(@"Error parsing JSON: %@", e);
+        } else {
+            
+//            NSDictionary *firstObjectDict = [jsonArray objectAtIndex:0];
+//            
+//            NSString *kind = firstObjectDict[@"items"][@"kind"];
+//            NSLog(@"latin kind: %@", kind);
+//            NSString *etag = firstObjectDict[@"items"][@"etag"];
+//            NSLog(@"etag como una cabra: %@", etag);
+//
+//
+//            
+//            
+//            NSString *myValue = [firstObjectDict valueForKey:@"etag"];
+//            NSLog(@"eeeeeeeeeeeeee: %@", myValue);
+            
+            
+            
+            
+            for(NSDictionary *item in jsonArray) {
+                NSLog(@"Item: %@", item);
+
+                PONTE A DEPURAR AQUI
+                
+                
+               
+                
+//                NSString* text= item[@"items"];
+//                NSLog(@"KEyyyyyyyyyyyyyyyyyyyyyyY Item: %@", text);
+                
+                
+            }
+        }
+        
+        
+        
+        //NSLog(@"%@", [json objectAtIndex:0]);
+        
+        
+        
+        
+//        NSString *imageString = [NSString stringWithFormat:@"%@", [json objectAtIndex:3]];
+//        
+//        NSURL *urlOne = [NSURL URLWithString:imageString];
+//        
+//        NSData *newData = [NSData dataWithContentsOfURL:urlOne];
+//        
+//        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+//        
+//        [imageView setImage:[UIImage imageWithData:newData]];
+//        
+//        [self.view addSubview:imageView];
+//        
+//        
+        
+        
+        
     }
 }
 
@@ -129,5 +214,9 @@
             break;
     }
 }
+
+
+
+
 
 @end

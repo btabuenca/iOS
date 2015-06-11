@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>EF44ED64-CAA9-43CF-B122-77CC217CABB2</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Examples</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>BC291BFF350AEC7CBDCDEEE1E5DE57ACFC6FD76C</key>
 		<string>https://github.com/btabuenca/iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>workspace/Estimote/beacons/Examples.xcodeproj/project.xcworkspace</string>
+	<string>workspace/Estimote/beacons/Examples.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>BC291BFF350AEC7CBDCDEEE1E5DE57ACFC6FD76C</key>

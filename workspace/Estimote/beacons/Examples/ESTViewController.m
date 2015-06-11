@@ -54,7 +54,7 @@
     self.tableView.sectionHeaderHeight = 20;
     [self.tableView registerClass:[ESTDemoTableViewCell class] forCellReuseIdentifier:@"DemoCellIdentifier"];
     
-    self.beaconDemoList = @[ @[@"Virtual Beacon", @"Distance", @"Proximity Zones",@"Notifications"],
+    self.beaconDemoList = @[ @[@"Virtual Beacon", @"Distance", @"Proximity Zones",@"Notifications",@"Learn Beacons"],
                              @[@"Temperature", @"Accelerometer", @"Motion UUID"],
                              @[@"Beacon Settings", @"Update Firmware", @"Local Bulk Update", @"Remote Bulk Update"],
                              @[@"Fetch beacons from cloud", @"Send Beacons GPS Position"]
@@ -149,6 +149,17 @@
                 
                 break;
             }
+            case 4:
+            {
+                demoViewController = [[ESTBeaconTableVC alloc] initWithScanType:ESTScanTypeBeacon
+                                                                     completion:^(CLBeacon *beacon) {
+                                                                         
+                                                                         ESTProximityDemoVC *proximityDemoVC = [[ESTProximityDemoVC alloc] initWithBeacon:beacon];
+                                                                         [self.navigationController pushViewController:proximityDemoVC animated:YES];
+                                                                     }];
+                break;
+            }
+                
             default:
                 break;
         }
@@ -190,6 +201,8 @@
                 
                 break;
             }
+
+                
             default:
                 break;
         }
