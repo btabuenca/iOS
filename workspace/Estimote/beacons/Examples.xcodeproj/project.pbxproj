@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		672049BE1B385D1A00DAB29F /* DataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 672049BD1B385D1A00DAB29F /* DataClass.m */; };
 		67D9AB1F1B1F4F8100986E90 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D9AB1E1B1F4F8100986E90 /* CoreLocation.framework */; };
 		67D9AB211B1F4F8E00986E90 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D9AB201B1F4F8E00986E90 /* CoreBluetooth.framework */; };
 		951C167D18E475B6001B3C8E /* ESTNotificationDemoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 951C167C18E475B6001B3C8E /* ESTNotificationDemoVC.xib */; };
@@ -49,6 +50,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		672049BC1B38567000DAB29F /* DataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataClass.h; sourceTree = "<group>"; };
+		672049BD1B385D1A00DAB29F /* DataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataClass.m; sourceTree = "<group>"; };
 		67D9AB1E1B1F4F8100986E90 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		67D9AB201B1F4F8E00986E90 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		951C167C18E475B6001B3C8E /* ESTNotificationDemoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ESTNotificationDemoVC.xib; sourceTree = "<group>"; };
@@ -214,6 +217,8 @@
 				A12D28DA18E9638100872A95 /* ESTUpdateFirmwareDemoVC.xib */,
 				954AF5851AE9775D0028C914 /* ESTVirtualBeaconDemoVC.xib */,
 				AC39C3C418D72A6F00B38212 /* Supporting Files */,
+				672049BC1B38567000DAB29F /* DataClass.h */,
+				672049BD1B385D1A00DAB29F /* DataClass.m */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -332,6 +337,7 @@
 				956A942A1AD7D2B100FC0FFA /* ESTSendGPSDemoVC.m in Sources */,
 				A12D28DB18E9638100872A95 /* ESTUpdateFirmwareDemoVC.m in Sources */,
 				952CEA5C1A88B9CF003A99A6 /* ESTBeaconDetailsDemoVC.m in Sources */,
+				672049BE1B385D1A00DAB29F /* DataClass.m in Sources */,
 				AC39C3CE18D72A6F00B38212 /* ESTAppDelegate.m in Sources */,
 				956C57651AA8AAC900B468D4 /* ESTTemperatureDemoVC.m in Sources */,
 			);

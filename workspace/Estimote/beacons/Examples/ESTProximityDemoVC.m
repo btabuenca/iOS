@@ -6,6 +6,8 @@
 //
 
 #import "ESTProximityDemoVC.h"
+#import "DataClass.h"
+
 
 @interface ESTProximityDemoVC () <ESTBeaconManagerDelegate>
 
@@ -69,9 +71,9 @@
     self.beaconManager.delegate = self;
     
     self.beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:self.beacon.proximityUUID
-                                                                 major:[self.beacon.major unsignedIntValue]
-                                                                 minor:[self.beacon.minor unsignedIntValue]
-                                                            identifier:@"RegionIdentifier"];
+                                                                major:[self.beacon.major unsignedIntValue]
+                                                                minor:[self.beacon.minor unsignedIntValue]
+                                                           identifier:@"RegionIdentifier"];
     
     [self.beaconManager startRangingBeaconsInRegion:self.beaconRegion];
 }
@@ -79,7 +81,7 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self.beaconManager stopRangingBeaconsInRegion:self.beaconRegion];
-
+    
     [super viewDidDisappear:animated];
 }
 
@@ -93,172 +95,114 @@
         
         self.zoneLabel.text     = [self textForProximity:firstBeacon.proximity];
         self.imageView.image    = [self imageForProximity:firstBeacon.proximity];
-
+        
         NSLog(@"The code runs through here 0!");
+        NSLog(@"Proximity text: %@", [self textForProximity:firstBeacon.proximity]);
+        NSLog(@"Proximity valu: %ld", (long)firstBeacon.proximity);
         
         
         NSString *uuid = [firstBeacon.proximityUUID UUIDString];
         NSNumber *major = firstBeacon.major;
         NSNumber *minor = firstBeacon.minor;
-//        NSInteger *rssi = firstBeacon.rssi;
-//        
-//        
-//        NSLog(@"Proximity UUID @", uuid);
-//        NSLog(@" major @", major);
-//        NSLog(@" minor @", minor);
-//        NSLog(@" rssi @", rssi);
-
-
+        //        NSInteger *rssi = firstBeacon.rssi;
+        //
+        //
+        //        NSLog(@"Proximity UUID @", uuid);
+        //        NSLog(@" major @", major);
+        //        NSLog(@" minor @", minor);
+        //        NSLog(@" rssi @", rssi);
+        
+        
         NSString *urlRoot = @"https://learn-beacon.appspot.com/_ah/api/layerendpoint/v1/layer/beacon";
         NSString *urlString = [NSString stringWithFormat:@"%@/%@", urlRoot, uuid];
-
-        NSLog(@"The code runs through here 1!");
         
-
-    
         
         NSURL *url = [NSURL URLWithString:urlString];
         NSData *data = [NSData dataWithContentsOfURL:url];
         NSError *error;
-
+        
         // This is just for printing
         NSMutableArray *json = (NSMutableArray*)[NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-        NSLog(@"%@", json);
-        NSLog(@"The code runs through here 2!");
+        // This line shows the json NSLog(@"%@", json);
         
         
         
         NSError *errDict;
         NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&errDict];
-        NSArray *fetchedArr = [jsonDict objectForKey:@"items"];
-        NSLog(@"The code runs through here 3!");
         
         
-                    for(NSDictionary *item in fetchedArr) {
-                        
-//                        "beacon_id" = "B9407F30-F5F8-466E-AFF9-25556B57FE6D";
-//                        content =             {
-//                            value = "Interact layer content";
-//                        };
-//                        distance = 5;
-//                        id = 5695159920492544;
-//                        kind = "layerendpoint#resourcesItem";
-//                        "layer_cc" = "CC_BY";
-//                        level = 0;
-//                        signal = 0;
-//                        tag = btb;
-//                        "timestamp_update" = 1421433780000;
-//                        "timestamp_validity_end" = 1516128180000;
-//                        "timestamp_validity_start" = 1421433780000;
+        // aqui vas a insertar la variable global
+        DataClass *obj=[DataClass getInstance];
+        obj.strBeaconID= @"I am Global variable";
+        
+        NSLog(@"Antes: %@", obj.strBeaconID);
+        obj.strBeaconID= @"This is the new value.";
+        NSLog(@"Despues: %@", obj.strBeaconID);
+        
+        
+        //arr = [jsonDict objectForKey:@"items"];
+        
+        
+        //NSArray *fetchedArr = [jsonDict objectForKey:@"items"];
+        obj.arrLayers = [[NSMutableArray alloc] init];
+        obj.arrLayers = [jsonDict objectForKey:@"items"];
+        
+        NSLog(@"The code runs through here A!");
+        
+        //NSString *strLev = @"1";
+        //[obj printLayers:strLev];
+        [obj printLayers];
+        
+        NSString *strLev = [NSString stringWithFormat:@"%ld", (long)firstBeacon.proximity];
+        
 
-                        NSString *strBeaconId = [item objectForKey:@"beacon_id"];
-                        NSString *strContent = [item objectForKey:@"content"];
-                        NSString *strDistance = [item objectForKey:@"distance"];
-                        NSString *strId = [item objectForKey:@"id"];
-                        NSString *strLayerCC = [item objectForKey:@"layer_cc"];
-                        NSString *strLevel = [item objectForKey:@"level"];
-                        NSString *strSignal = [item objectForKey:@"signal"];
-                        NSString *strTag = [item objectForKey:@"tag"];
-                        NSString *strTimestampUpdate = [item objectForKey:@"timestamp_update"];
-                        NSString *strTimestampEnd = [item objectForKey:@"timestamp_validity_end"];
-                        NSString *strTimestampStart = [item objectForKey:@"timestamp_validity_start"];
+        NSDictionary *item = [obj getLayer:strLev];
+        
+        TE HAS QUEADO AQUI
 
-                        
-                        NSLog(@"strBeaconId: %@", strBeaconId);
-                        NSLog(@"strContent: %@", strContent);
-                        NSLog(@"strDistance: %@", strDistance);
-                        NSLog(@"strId: %@", strId);
-                        NSLog(@"strLayerCC: %@", strLayerCC);
-                        NSLog(@"strLevel: %@", strLevel);
-                        NSLog(@"strSignal: %@", strSignal);
-                        NSLog(@"strTag: %@", strTag);
-                        NSLog(@"strTimestampUpdate: %@", strTimestampUpdate);
-                        NSLog(@"strTimestampEnd: %@", strTimestampEnd);
-                        NSLog(@"strTimestampStart: %@", strTimestampStart);
-
-                        
-                        
-                    }
         
         
-//
-//        // Let s read the details
-//        NSError *e = nil;
-//        NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: data options: NSJSONReadingMutableContainers error: &e];
-//               if (!jsonArray) {
-//                    NSLog(@"Error parsing JSON: %@", e);
-//                } else {
-//                    NSLog(@"Geen Error parsing JSON: %@");
-//                    
-//                }
-//        NSLog(@"The code runs through here 4!");
+        //[DataClass printLayers];
+        NSLog(@"The code runs through here B!");
         
         
         
-//        if (!jsonArray) {
-//            NSLog(@"Error parsing JSON: %@", e);
-//        } else {
+        
+        
+        
+//        for(NSDictionary *item in fetchedArr) {
 //            
 //            
 //            
-//            if([[jsonArray objectAtIndex:0] isKindOfClass:[NSArray class]]){
-//                //Is array
-//                NSLog(@"This looks like an array");
-//                NSArray *nsarrItems = [jsonArray objectAtIndex:0];
-//                
-//                
-//                
-//                for(NSDictionary *item in nsarrItems) {
-//                    NSLog(@"Item x: %@", item);
-//                    
-//                }
-//                
-//                
-//                
-//            }else if([[jsonArray objectAtIndex:0] isKindOfClass:[NSDictionary class]]){
-//                //is dictionary
-//                NSLog(@"This looks like an dictionary");
-////                NSArray *nsarrItems = [jsonArray objectAtIndex:0];
-//                
-//                
-//                NSDictionary *nsdictItems = [jsonArray objectAtIndex:0];
-//                NSString *strKey = @"layer_cc";
-//                NSLog(@"Getting licence: %@", [nsdictItems valueForKey:strKey]);
-//                NSLog(@"Let us iterate... ");
-//                for( NSString *aKey in [nsdictItems allKeys] )
-//                {
-//                    // do something like a log:
-//                    //NSLog(@"Key: %@", aKey);
-//                    if ([aKey isEqualToString:strKey]) {
-//                        NSLog(@"Licencia encontrada!");
-//                    }
-//                }
-//                
-//            }else{
-//                //is something else
-//            }
+//            NSString *strBeaconId = [item objectForKey:@"beacon_id"];
+//            NSString *strContent = [item objectForKey:@"content"];
+//            NSString *strDistance = [item objectForKey:@"distance"];
+//            NSString *strId = [item objectForKey:@"id"];
+//            NSString *strLayerCC = [item objectForKey:@"layer_cc"];
+//            NSString *strLevel = [item objectForKey:@"level"];
+//            NSString *strSignal = [item objectForKey:@"signal"];
+//            NSString *strTag = [item objectForKey:@"tag"];
+//            NSString *strTimestampUpdate = [item objectForKey:@"timestamp_update"];
+//            NSString *strTimestampEnd = [item objectForKey:@"timestamp_validity_end"];
+//            NSString *strTimestampStart = [item objectForKey:@"timestamp_validity_start"];
 //            
-//       
-////            NSDictionary *nsdictItems = [jsonArray objectAtIndex:0];
-////            NSDictionary *nsdictKind = [jsonArray objectAtIndex:1];
-////            NSDictionary *nsdictEtag = [jsonArray objectAtIndex:2];
-//
-//            NSLog(@"The code runs through here!");
 //            
-//
+//            NSLog(@"strBeaconId: %@", strBeaconId);
+//            NSLog(@"strContent: %@", strContent);
+//            NSLog(@"strDistance: %@", strDistance);
+//            NSLog(@"strId: %@", strId);
+//            NSLog(@"strLayerCC: %@", strLayerCC);
+//            NSLog(@"strLevel: %@", strLevel);
+//            NSLog(@"strSignal: %@", strSignal);
+//            NSLog(@"strTag: %@", strTag);
+//            NSLog(@"strTimestampUpdate: %@", strTimestampUpdate);
+//            NSLog(@"strTimestampEnd: %@", strTimestampEnd);
+//            NSLog(@"strTimestampStart: %@", strTimestampStart);
 //            
-//            for(NSDictionary *item in jsonArray) {
-//                NSLog(@"Item: %@", item);
-//               
-//                NSLog(@"The codes breakes somewhere herer.");
-//                
-//                
-//            }
+//            
+//            
 //        }
         
-        
-        
-        //NSLog(@"%@", [json objectAtIndex:0]);
         
         
         
@@ -282,7 +226,7 @@
     }
 }
 
-#pragma mark - 
+#pragma mark -
 
 - (NSString *)textForProximity:(CLProximity)proximity
 {
