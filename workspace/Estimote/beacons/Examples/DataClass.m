@@ -79,6 +79,10 @@ static DataClass *instance = nil;
         
         NSString *strBeaconId = [item objectForKey:@"beacon_id"];
         NSString *strContent = [item objectForKey:@"content"];
+        
+        NSDictionary *dictContent = [item objectForKey:@"content"];
+        NSString *strContentV = [dictContent objectForKey:@"value"];
+        
         NSString *strDistance = [item objectForKey:@"distance"];
         NSString *strId = [item objectForKey:@"id"];
         NSString *strLayerCC = [item objectForKey:@"layer_cc"];
@@ -89,28 +93,58 @@ static DataClass *instance = nil;
         NSString *strTimestampEnd = [item objectForKey:@"timestamp_validity_end"];
         NSString *strTimestampStart = [item objectForKey:@"timestamp_validity_start"];
         
-        if ([level isEqualToString:strLevel]) {
+        if ( [level intValue] == [strLevel intValue]) {
             
-            NSLog(@"strBeaconId: %@", strBeaconId);
-            NSLog(@"strContent: %@", strContent);
-            NSLog(@"strDistance: %@", strDistance);
-            NSLog(@"strId: %@", strId);
-            NSLog(@"strLayerCC: %@", strLayerCC);
-            NSLog(@"strLevel: %@", strLevel);
-            NSLog(@"strSignal: %@", strSignal);
-            NSLog(@"strTag: %@", strTag);
-            NSLog(@"strTimestampUpdate: %@", strTimestampUpdate);
-            NSLog(@"strTimestampEnd: %@", strTimestampEnd);
-            NSLog(@"strTimestampStart: %@", strTimestampStart);
+//            NSLog(@"strBeaconId: %@", strBeaconId);
+//            NSLog(@"strContent: %@", strContent);
+//            NSLog(@"strDistance: %@", strDistance);
+//            NSLog(@"strId: %@", strId);
+//            NSLog(@"strLayerCC: %@", strLayerCC);
+//            NSLog(@"strLevel: %@", strLevel);
+//            NSLog(@"strSignal: %@", strSignal);
+//            NSLog(@"strTag: %@", strTag);
+//            NSLog(@"strTimestampUpdate: %@", strTimestampUpdate);
+//            NSLog(@"strTimestampEnd: %@", strTimestampEnd);
+//            NSLog(@"strTimestampStart: %@", strTimestampStart);
             
             
-            NSLog(@"Encontrado!!: %@", strContent);
+            NSLog(@"Encontrado!!: %@ %@", strContent, strContentV);
             layer = item;
             
+        }else{
+            NSLog(@"Este no es: %@", strLevel);
         }
         
     }
     return layer;
+    
+}
+
+
+-(NSString *)getLayerContent:(NSString*)level;
+{
+    NSLog(@"Looking for!!: %@", level);
+    NSDictionary *layer;
+    NSString *strReturn;
+    
+    for(NSDictionary *item in arrLayers) {
+        
+
+        NSString *strLevel = [item objectForKey:@"level"];
+
+        
+        if ([level intValue] == [strLevel intValue]) {
+            
+            NSDictionary *dictContent = [item objectForKey:@"content"];
+            NSString *strContentV = [dictContent objectForKey:@"value"];
+            
+            NSLog(@"Encontrado!!: %@", strContentV);
+            strReturn = strContentV;
+
+        }
+        
+    }
+    return strReturn;
     
 }
 

@@ -49,7 +49,7 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    self.title = @"Estimote Demos";
+    self.title = @"Beacon explorer";
     
     self.tableView.sectionHeaderHeight = 20;
     [self.tableView registerClass:[ESTDemoTableViewCell class] forCellReuseIdentifier:@"DemoCellIdentifier"];
@@ -156,7 +156,8 @@
                                                                          
                                                                          ESTProximityDemoVC *proximityDemoVC = [[ESTProximityDemoVC alloc] initWithBeacon:beacon];
                                                                          [self.navigationController pushViewController:proximityDemoVC animated:YES];
-                                                                     }];
+                                                                     }];                                
+                
                 break;
             }
                 

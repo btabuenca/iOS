@@ -237,9 +237,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AC39C3B918D72A6F00B38212 /* Examples */ = {
+		AC39C3B918D72A6F00B38212 /* LearnBeacon */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AC39C3EC18D72A6F00B38212 /* Build configuration list for PBXNativeTarget "Examples" */;
+			buildConfigurationList = AC39C3EC18D72A6F00B38212 /* Build configuration list for PBXNativeTarget "LearnBeacon" */;
 			buildPhases = (
 				AC39C3B618D72A6F00B38212 /* Sources */,
 				AC39C3B718D72A6F00B38212 /* Frameworks */,
@@ -249,7 +249,7 @@
 			);
 			dependencies = (
 			);
-			name = Examples;
+			name = LearnBeacon;
 			productName = Examples;
 			productReference = AC39C3BA18D72A6F00B38212 /* Examples.app */;
 			productType = "com.apple.product-type.application";
@@ -287,7 +287,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AC39C3B918D72A6F00B38212 /* Examples */,
+				AC39C3B918D72A6F00B38212 /* LearnBeacon */,
 			);
 		};
 /* End PBXProject section */
@@ -498,7 +498,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AC39C3EC18D72A6F00B38212 /* Build configuration list for PBXNativeTarget "Examples" */ = {
+		AC39C3EC18D72A6F00B38212 /* Build configuration list for PBXNativeTarget "LearnBeacon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AC39C3ED18D72A6F00B38212 /* Debug */,

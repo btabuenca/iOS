@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AC39C3B918D72A6F00B38212"
-               BuildableName = "LearnBeacon.app"
-               BlueprintName = "LearnBeacon"
-               ReferencedContainer = "container:Examples.xcodeproj">
+               BlueprintIdentifier = "EC0E93641A7085B20077618F"
+               BuildableName = "Happiness.app"
+               BlueprintName = "Happiness"
+               ReferencedContainer = "container:Happiness.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EC0E93791A7085B20077618F"
+               BuildableName = "HappinessTests.xctest"
+               BlueprintName = "HappinessTests"
+               ReferencedContainer = "container:Happiness.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,14 +42,24 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EC0E93791A7085B20077618F"
+               BuildableName = "HappinessTests.xctest"
+               BlueprintName = "HappinessTests"
+               ReferencedContainer = "container:Happiness.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AC39C3B918D72A6F00B38212"
-            BuildableName = "LearnBeacon.app"
-            BlueprintName = "LearnBeacon"
-            ReferencedContainer = "container:Examples.xcodeproj">
+            BlueprintIdentifier = "EC0E93641A7085B20077618F"
+            BuildableName = "Happiness.app"
+            BlueprintName = "Happiness"
+            ReferencedContainer = "container:Happiness.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,10 +76,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AC39C3B918D72A6F00B38212"
-            BuildableName = "LearnBeacon.app"
-            BlueprintName = "LearnBeacon"
-            ReferencedContainer = "container:Examples.xcodeproj">
+            BlueprintIdentifier = "EC0E93641A7085B20077618F"
+            BuildableName = "Happiness.app"
+            BlueprintName = "Happiness"
+            ReferencedContainer = "container:Happiness.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -71,10 +95,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "AC39C3B918D72A6F00B38212"
-            BuildableName = "LearnBeacon.app"
-            BlueprintName = "LearnBeacon"
-            ReferencedContainer = "container:Examples.xcodeproj">
+            BlueprintIdentifier = "EC0E93641A7085B20077618F"
+            BuildableName = "Happiness.app"
+            BlueprintName = "Happiness"
+            ReferencedContainer = "container:Happiness.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

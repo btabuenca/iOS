@@ -22,6 +22,7 @@
 
 -(void)printLayers;
 -(NSDictionary *)getLayer:(NSString*)level;
+-(NSString *)getLayerContent:(NSString*)level;
 
 
 @end
