@@ -13,6 +13,8 @@
 		67AC21C01BA7E5360057BFD2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67AC21BF1BA7E5360057BFD2 /* Images.xcassets */; };
 		67AC21C31BA7E5360057BFD2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67AC21C11BA7E5360057BFD2 /* LaunchScreen.xib */; };
 		67AC21CF1BA7E5360057BFD2 /* MyFirstSwiftAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AC21CE1BA7E5360057BFD2 /* MyFirstSwiftAppTests.swift */; };
+		67BE8DA21BB2ADC400B359A5 /* btabuenca_475x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BE8DA01BB2ADC400B359A5 /* btabuenca_475x.png */; settings = {ASSET_TAGS = (); }; };
+		67BE8DA31BB2ADC400B359A5 /* pumpkin_50x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67BE8DA11BB2ADC400B359A5 /* pumpkin_50x.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +38,8 @@
 		67AC21C81BA7E5360057BFD2 /* MyFirstSwiftAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyFirstSwiftAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		67AC21CD1BA7E5360057BFD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67AC21CE1BA7E5360057BFD2 /* MyFirstSwiftAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFirstSwiftAppTests.swift; sourceTree = "<group>"; };
+		67BE8DA01BB2ADC400B359A5 /* btabuenca_475x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btabuenca_475x.png; sourceTree = "<group>"; };
+		67BE8DA11BB2ADC400B359A5 /* pumpkin_50x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pumpkin_50x.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		67AC21B51BA7E5360057BFD2 /* MyFirstSwiftApp */ = {
 			isa = PBXGroup;
 			children = (
+				67BE8D9F1BB2ADC400B359A5 /* images */,
 				67AC21B81BA7E5360057BFD2 /* AppDelegate.swift */,
 				67AC21BA1BA7E5360057BFD2 /* ViewController.swift */,
 				67AC21BC1BA7E5360057BFD2 /* Main.storyboard */,
@@ -110,6 +115,15 @@
 				67AC21CD1BA7E5360057BFD2 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		67BE8D9F1BB2ADC400B359A5 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				67BE8DA01BB2ADC400B359A5 /* btabuenca_475x.png */,
+				67BE8DA11BB2ADC400B359A5 /* pumpkin_50x.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +170,7 @@
 		67AC21AB1BA7E5360057BFD2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Bernardo Tabuenca";
 				TargetAttributes = {
@@ -193,8 +208,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				67AC21BE1BA7E5360057BFD2 /* Main.storyboard in Resources */,
+				67BE8DA21BB2ADC400B359A5 /* btabuenca_475x.png in Resources */,
 				67AC21C31BA7E5360057BFD2 /* LaunchScreen.xib in Resources */,
 				67AC21C01BA7E5360057BFD2 /* Images.xcassets in Resources */,
+				67BE8DA31BB2ADC400B359A5 /* pumpkin_50x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +426,7 @@
 				67AC21D41BA7E5360057BFD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		67AC21D51BA7E5360057BFD2 /* Build configuration list for PBXNativeTarget "MyFirstSwiftAppTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +435,7 @@
 				67AC21D71BA7E5360057BFD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
