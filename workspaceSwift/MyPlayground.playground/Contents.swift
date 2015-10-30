@@ -300,12 +300,225 @@ if let cupHolder = niceCar.cupHolders {
 // Swift lets makes these easier with "Optinal chaining...
 let firstCup = niceCar.cupHolders?.cups?[0]
 
+//
+// Closers
+// 
+
+//  Son lo mismo que las funciones pero ....
+//  Esto sirve para pasarse funciones como variable entre sitios
+func performMagic(thingy: String) -> String{
+    return thingy
+}
+performMagic("Hey")
+
+var magicFunction = performMagic
+magicFunction("Hey")
+
+var newMagicFunction = {
+    (thingy: String) -> String in
+    return thingy
+}
+
+// ej. closer
+var adderFunction: (Int, Int) -> Int = {
+    (a: Int, b: Int) -> Int in
+    return a + b
+}
+adderFunction(1,3)
+
+
+// The interesting thing is that you might also want
+// to get variables that are out of the scope
+
+var b = 3
+
+var adderExtVarFunction: (Int) -> Int = {
+    (a: Int) -> Int in
+    return a + b
+}
+
+b = 1
+adderExtVarFunction(3)
+
+
+// Making it more interesting
+// Assigning classes to vars
+// El pavo dice que es interesante pero tambien peligroso
+class number {
+    var b: Int = 3
+}
+var aNumber = number()
+var adderExtClassFunction: (Int) -> Int = {
+    (a: Int) -> Int in
+    return a + aNumber.b
+}
+
+adderExtClassFunction(1)
+aNumber.b = 5
+adderExtClassFunction(1)
 
 
 
+func doComplicatedStuff(completion:() -> ()){
+    // does crazy stuff
+    
+}
+
+
+//
+// Properties (vars wihtin classes)
+//
+
+class  Legs{
+    var count: Int = 0
+}
+
+class Animal {
+    var name: String = ""
+    var legs: Legs = Legs()
+}
+
+class LegVet  {
+    // Default is protected. Everything withih the same module, can see it.
+    weak var legs: Legs? = nil
+    
+    // The following line indicates that it would only be visible within the class
+    // private weak var legs: Legs? = nil
+    
+    // Can also be public
+    // public weak var legs: Legs? = nil
+}
+
+let dog = Animal()
+let vet = LegVet()
+vet.legs = dog.legs
+
+// Ownership and memory management
+// Memory leak managemente
+// Automatic reference counting
+// Each time it is referenced, the counter of instances is increased
+// Default are STRONG references. Hence the counter of instances is increased. It is does own it.
+// WEAK means that the counter is not increased when it is assigned, so it does not own it. It is a reference.
+
+
+//
+// Structs
+//
+
+var aa = 3
+var bb = aa
+
+
+bb = 5
+
+aa
+
+//-
+// Comenta y descomenta el siguiente bloque para entender la diferencia entre class y struct
+// -
+//class numberr {
+//    var n: Int
+//    init(n: Int){
+//        self.n = n
+//    }
+//}
+
+struct numberr {
+    var n: Int
+    init(n: Int){
+        self.n = n
+    }
+}
+
+var aNumberr = numberr(n:3)
+var bNumberr = aNumberr
+
+bNumberr.n = 5
+
+// Con class, la siguieente sentencia devuelve 5
+// Con struct, la siguieente sentencia devuelve 3
+aNumberr.n
+
+// La siguiente sentencia devuelve 5 para struct y class
+bNumberr.n
+
+
+//
+// Cheat sheet
+//
+
+
+//
+// Inheritance
+//
+class SuperNumber: NSNumber {
+
+    override func getValue(value: UnsafeMutablePointer<Void>) {
+        super.getValue(value)
+    }
+}
+
+//
+// extension. Add funtcions to classes
+//
+extension NSNumber{
+    func superCoolGetter() -> Int {
+        return 5
+    }
+}
+
+var n = NSNumber(int: 4)
+n.superCoolGetter()
+
+//
+// protocols. Es lo mismo que los interfaces
+//
+protocol dancable{
+    func dance()
+}
+
+class Person: NSNumber, dancable{
+    func dance() {
+        
+    }
+}
+
+//
+// enums types
+//
+enum TypesOfVeggies : String {
+    case Carrots
+    case Tomatoes
+    case Celery
+}
+
+let carrot = TypesOfVeggies.Carrots
+carrot.rawValue
+
+func eatVeggies (veggie: TypesOfVeggies){
+    
+}
+
+eatVeggies(TypesOfVeggies.Carrots)
+let randomVeggie = TypesOfVeggies(rawValue: "Tomatoes")
 
 
 
+//
+// Image processing
+//
+
+// Each pixel takes 4 btyes
+// 
+// Ojo al hacer caching de los pixels
+// e.g.
+//  pixel.red = UInt8(avgRed + 2 )
+
+
+
+//
+// Swift VS C Objective
+//
 
 
 

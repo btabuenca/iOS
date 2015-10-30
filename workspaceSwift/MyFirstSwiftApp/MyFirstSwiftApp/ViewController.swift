@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ViewController: UIViewController, SSRadioButtonControllerDelegate {
+class ViewController: UIViewController, SSRadioButtonControllerDelegate, UITableViewDataSource {
+
     
     //
     // These variables are declared as a connection between app code and interface
@@ -33,53 +34,143 @@ class ViewController: UIViewController, SSRadioButtonControllerDelegate {
     
     var radioButtonController: SSRadioButtonsController?
     
-
+    
+    //
+    // Datasource mangement
+    //
+    var assignments = [Assignment]()
+    
+    // Returns the number of chunks in the table
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    
+    // Returns the number of rows
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    // Content of the cells
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = UITableViewCell()
+        cell.textLabel?.text = "Lesson 1"
+        return cell
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        // This peace of text is for removing the keyboard
-        // Looks for single or multiple taps.
-        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
-        view.addGestureRecognizer(tap)
-        
-
-        // Handle radio buttons
-        radioButtonController = SSRadioButtonsController(buttons: bPUT, bGET, bPOST)
-        radioButtonController!.delegate = self
-        radioButtonController!.shouldLetDeSelect = true
-        
-        // Handle check in/out buttons
-        //  check in
-        let tapGestureRecognizerCI = UITapGestureRecognizer(target: self, action: "tappedCI:")
-        bCheckIn.addGestureRecognizer(tapGestureRecognizerCI)
-        let longPressRecognizerCI = UILongPressGestureRecognizer(target: self, action: "longPressedCI:")
-        longPressRecognizerCI.minimumPressDuration = 0.5
-        bCheckIn.addGestureRecognizer(longPressRecognizerCI)
-        //  check out
-        let tapGestureRecognizerCO = UITapGestureRecognizer(target: self, action: "tappedCO:")
-        bCheckOut.addGestureRecognizer(tapGestureRecognizerCO)
-        let longPressRecognizerCO = UILongPressGestureRecognizer(target: self, action: "longPressedCO:")
-        longPressRecognizerCO.minimumPressDuration = 0.5
-        bCheckOut.addGestureRecognizer(longPressRecognizerCO)
-        
-        
-        // This text was added for testing
-        // numberOfRoommatesTF.text = "Hello room mates!!"
-        // numberOfNightsTF.text = "2"
-        // pricePerNightTF.text = "50"
-        
+        self.assignments = [Assignment(name: "Lesson 1"), Assignment(name: "Lesson 2"), Assignment(name: "Lesson 3"), Assignment(name: "Lesson 4"), Assignment(name: "Lesson 5")]
         
         
 
-        
-        
- //       let image = UIImage(named: "Pumpkin")
- //       imageView.image = image
-        
-        //self.label.text = @"Hello";
-        
     }
+    
+    
+    
+
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        // Do any additional setup after loading the view, typically from a nib.
+//        
+//        // This peace of text is for removing the keyboard
+//        // Looks for single or multiple taps.
+//        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+//        view.addGestureRecognizer(tap)
+//        
+//
+//        // Handle radio buttons
+//        radioButtonController = SSRadioButtonsController(buttons: bPUT, bGET, bPOST)
+//        radioButtonController!.delegate = self
+//        radioButtonController!.shouldLetDeSelect = true
+//        
+//        // Handle check in/out buttons
+//        //  check in
+//        let tapGestureRecognizerCI = UITapGestureRecognizer(target: self, action: "tappedCI:")
+//        bCheckIn.addGestureRecognizer(tapGestureRecognizerCI)
+//        let longPressRecognizerCI = UILongPressGestureRecognizer(target: self, action: "longPressedCI:")
+//        longPressRecognizerCI.minimumPressDuration = 0.5
+//        bCheckIn.addGestureRecognizer(longPressRecognizerCI)
+//        //  check out
+//        let tapGestureRecognizerCO = UITapGestureRecognizer(target: self, action: "tappedCO:")
+//        bCheckOut.addGestureRecognizer(tapGestureRecognizerCO)
+//        let longPressRecognizerCO = UILongPressGestureRecognizer(target: self, action: "longPressedCO:")
+//        longPressRecognizerCO.minimumPressDuration = 0.5
+//        bCheckOut.addGestureRecognizer(longPressRecognizerCO)
+//        
+//
+//        
+//        // Get Subjects
+//        // https://lifelong-learning-hub.appspot.com/_ah/api/subjectendpoint/v1/subject
+//        // https://lifelong-learning-hub.appspot.com/_ah/api/subjectendpoint/v1/subject/course/N35231
+//        // GET
+//        
+//        
+//        //SWIFT REQUEST START
+//        let myUrl = NSURL(string: "https://lifelong-learning-hub.appspot.com/_ah/api/subjectendpoint/v1/subject/course/N35231");
+//        let request = NSMutableURLRequest(URL:myUrl!);
+//        
+//        //request.HTTPMethod = "POST";
+//        request.HTTPMethod = "GET";
+//        
+//
+//        
+//        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+//            data, response, error in
+//            
+//            if error != nil
+//            {
+//                print("error=\(error)")
+//                return
+//            }
+//            
+//            // You can print out response object
+//            //print("response = \(response)")
+//            
+//            // Print out response body
+//            let responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)
+//            //print("responseString = \(responseString)")
+//            
+//            //Let’s convert response sent from a server side script to a NSDictionary object:
+//            do {
+//                var jsonResult:AnyObject? = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableLeaves) as? NSDictionary
+//                //print("responseJSON = \(jsonResult)")
+//                
+//                
+//                
+//                if let result = jsonResult as? NSDictionary {
+//                    print("vamos1")
+//                    if let theItems = result["items"] as? NSArray {
+//                        print("vamos2 = \(theItems)")
+//                        
+//                        
+//                        // Aqui estas iterando sobre un NSArray de NSDictionaries
+//                        for anItem : AnyObject in theItems {
+//                            
+//                            print("vamos3 = \(anItem)")
+//
+//                            
+//                        }
+//                        
+//                    }
+//                }
+//                
+//
+//
+//            } catch let error as NSError {
+//                print(error)
+//            }
+//            
+//            
+//
+//            
+//        }
+//        
+//        task.resume()
+//
+//        
+//    }
     
     
     
@@ -106,9 +197,6 @@ class ViewController: UIViewController, SSRadioButtonControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    
-
     
     
     @IBAction func Calculate(){
@@ -163,19 +251,7 @@ class ViewController: UIViewController, SSRadioButtonControllerDelegate {
         print("longpressed CO")
         
         let but = sender.view as! UIButton
-//        if but.tag == BUTTON_CHECKIN {
-//            print(" - check in")
-//        } else if but.tag == BUTTON_CHECKOUT {
-//            print(" - check out")
-//        }
 
-
-
-        
-        //print(b)
-
-        
-        //Different code
     }
     
     
