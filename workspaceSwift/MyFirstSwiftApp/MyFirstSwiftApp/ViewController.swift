@@ -22,6 +22,10 @@ class ViewController: UIViewController, SSRadioButtonControllerDelegate, UITable
     @IBOutlet var pricePerNightTF : UITextField!
     @IBOutlet var priceToPayL : UILabel!
     
+    //
+    // el comportamiento de estos tres botones es ideal para implementar 
+    // que una sola tarea este regsitrando tiempo
+    //
     @IBOutlet weak var bPUT : UIButton!
     @IBOutlet weak var bGET : UIButton!
     @IBOutlet weak var bPOST : UIButton!
@@ -31,8 +35,8 @@ class ViewController: UIViewController, SSRadioButtonControllerDelegate, UITable
     @IBOutlet weak var bCheckOut : UIButton!
     
 
-    
     var radioButtonController: SSRadioButtonsController?
+    
     
     
     //
@@ -48,65 +52,76 @@ class ViewController: UIViewController, SSRadioButtonControllerDelegate, UITable
     
     // Returns the number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return assignments.count
     }
     
     // Content of the cells
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-        cell.textLabel?.text = "Lesson 1"
+        
+        let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Test")
+        
+        //var cell = UITableViewCell()
+        var assig = assignments[indexPath.row]
+        cell.textLabel?.text = assig.name
+        cell.imageView?.image = UIImage(named: "pumpkin_50x")
+        cell.detailTextLabel?.text = assig.desc
+        
+
         return cell
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.assignments = [Assignment(name: "Lesson 1"), Assignment(name: "Lesson 2"), Assignment(name: "Lesson 3"), Assignment(name: "Lesson 4"), Assignment(name: "Lesson 5")]
+        self.assignments = [Assignment(name:"Lesson 1", desc: "aa"), Assignment(name:"Lesson 2", desc: "bbb"), Assignment(name:"Lesson 3", desc: "cc"), Assignment(name:"Lesson 4", desc: "dd"), Assignment(name:"Lesson 5", desc: "ee"), Assignment(name:"Lesson 6", desc: "ff"), Assignment(name:"Lesson 7", desc: "gg"), Assignment(name:"Lesson 8", desc: "hh"), Assignment(name:"Lesson 9", desc: "ii")]
+        
+
+
+        
+
+    // Follow this guy
+// https://www.youtube.com/watch?v=RO4fj4fOYWg
+
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        // This peace of text is for removing the keyboard
+        // Looks for single or multiple taps.
+        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        view.addGestureRecognizer(tap)
+        
+
+        // Handle radio buttons
+        radioButtonController = SSRadioButtonsController(buttons: bPUT, bGET, bPOST)
+        radioButtonController!.delegate = self
+        radioButtonController!.shouldLetDeSelect = true
+        
+        // Handle check in/out buttons
+        //  check in
+        let tapGestureRecognizerCI = UITapGestureRecognizer(target: self, action: "tappedCI:")
+        bCheckIn.addGestureRecognizer(tapGestureRecognizerCI)
+        let longPressRecognizerCI = UILongPressGestureRecognizer(target: self, action: "longPressedCI:")
+        longPressRecognizerCI.minimumPressDuration = 0.5
+        bCheckIn.addGestureRecognizer(longPressRecognizerCI)
+        //  check out
+        let tapGestureRecognizerCO = UITapGestureRecognizer(target: self, action: "tappedCO:")
+        bCheckOut.addGestureRecognizer(tapGestureRecognizerCO)
+        let longPressRecognizerCO = UILongPressGestureRecognizer(target: self, action: "longPressedCO:")
+        longPressRecognizerCO.minimumPressDuration = 0.5
+        bCheckOut.addGestureRecognizer(longPressRecognizerCO)
+        
+
+        
+        // Get Subjects
+        // https://lifelong-learning-hub.appspot.com/_ah/api/subjectendpoint/v1/subject
+        // https://lifelong-learning-hub.appspot.com/_ah/api/subjectendpoint/v1/subject/course/N35231
+        // GET
+        
+        
+        sendRequest("https://lifelong-learning-hub.appspot.com/_ah/api/subjectendpoint/v1/subject/course/N35231")
         
         
 
-    }
-    
-    
-    
-
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        // Do any additional setup after loading the view, typically from a nib.
-//        
-//        // This peace of text is for removing the keyboard
-//        // Looks for single or multiple taps.
-//        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
-//        view.addGestureRecognizer(tap)
-//        
-//
-//        // Handle radio buttons
-//        radioButtonController = SSRadioButtonsController(buttons: bPUT, bGET, bPOST)
-//        radioButtonController!.delegate = self
-//        radioButtonController!.shouldLetDeSelect = true
-//        
-//        // Handle check in/out buttons
-//        //  check in
-//        let tapGestureRecognizerCI = UITapGestureRecognizer(target: self, action: "tappedCI:")
-//        bCheckIn.addGestureRecognizer(tapGestureRecognizerCI)
-//        let longPressRecognizerCI = UILongPressGestureRecognizer(target: self, action: "longPressedCI:")
-//        longPressRecognizerCI.minimumPressDuration = 0.5
-//        bCheckIn.addGestureRecognizer(longPressRecognizerCI)
-//        //  check out
-//        let tapGestureRecognizerCO = UITapGestureRecognizer(target: self, action: "tappedCO:")
-//        bCheckOut.addGestureRecognizer(tapGestureRecognizerCO)
-//        let longPressRecognizerCO = UILongPressGestureRecognizer(target: self, action: "longPressedCO:")
-//        longPressRecognizerCO.minimumPressDuration = 0.5
-//        bCheckOut.addGestureRecognizer(longPressRecognizerCO)
-//        
-//
-//        
-//        // Get Subjects
-//        // https://lifelong-learning-hub.appspot.com/_ah/api/subjectendpoint/v1/subject
-//        // https://lifelong-learning-hub.appspot.com/_ah/api/subjectendpoint/v1/subject/course/N35231
-//        // GET
-//        
-//        
+        
 //        //SWIFT REQUEST START
 //        let myUrl = NSURL(string: "https://lifelong-learning-hub.appspot.com/_ah/api/subjectendpoint/v1/subject/course/N35231");
 //        let request = NSMutableURLRequest(URL:myUrl!);
@@ -149,7 +164,24 @@ class ViewController: UIViewController, SSRadioButtonControllerDelegate, UITable
 //                        for anItem : AnyObject in theItems {
 //                            
 //                            print("vamos3 = \(anItem)")
+//                            
+//                            
+//                            if let resultItem = anItem as? NSDictionary {
+//                                if let theDesc = resultItem["subject_task_desc"] as? NSString {
+//                                    
+//                                    if let theAltDesc = resultItem["subject_task_alternative_desc"] as? NSString {
+//                                        print("vamos4 = \(theDesc) \(theAltDesc)")
 //
+//                                        self.assignments.append(Assignment(name:theDesc as String, desc: theAltDesc as String))
+//                                        
+//                                        self.collectionView?.reloadData()
+//                                        
+//                                        
+//                                    }
+//                                }
+//                            }
+//                            
+//                            
 //                            
 //                        }
 //                        
@@ -166,11 +198,107 @@ class ViewController: UIViewController, SSRadioButtonControllerDelegate, UITable
 //
 //            
 //        }
-//        
 //        task.resume()
-//
-//        
-//    }
+
+        
+    }
+    
+    
+    override func viewWillAppear(animated: Bool)  {
+        super.viewWillAppear(animated)
+        DataProvider.sharedInstance.loginWithEmailPassword("some@email.com") { (responseObject:NSDictionary?, error:NSError?) in
+            
+            if ((error) != nil) {
+                print("Error logging you in!")
+            } else {
+                print("Do something in the view controller in response to successful login!")
+            }
+        }
+    }
+    
+    
+    
+    
+    
+
+    //
+    // Handle get request
+    //
+    func sendRequest(url: String) -> NSURLSessionTask {
+        
+        
+        let requestURL = NSURL(string: url)!
+        let request = NSMutableURLRequest(URL: requestURL)
+        request.HTTPMethod = "GET"
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
+            print(data)
+            print(response)
+            print(error)
+            
+            /// kkk
+            if error != nil {
+                print("error=\(error)")
+                return
+            }
+            
+            
+            do {
+                var jsonResult:AnyObject? = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableLeaves) as? NSDictionary
+                
+                
+                if let result = jsonResult as? NSDictionary {
+                    print("vamos1")
+                    if let theItems = result["items"] as? NSArray {
+                        print("vamos2 = \(theItems)")
+                        
+                        for anItem : AnyObject in theItems {
+                            
+                            print("vamos3 = \(anItem)")
+                            
+                            
+                            if let resultItem = anItem as? NSDictionary {
+                                                                if let theDesc = resultItem["subject_task_desc"] as? NSString {
+                                
+                                                                    if let theAltDesc = resultItem["subject_task_alternative_desc"] as? NSString {
+                                                                        print("vamos4 = \(theDesc) \(theAltDesc)")
+                                
+                                                                        //self.assignments.append(Assignment(name:theDesc as String, desc: theAltDesc as String))
+                                
+                                
+                                                                    }
+                                                                }
+                            }
+                        } // for
+                    } // vamos 2
+                } // vamos 1
+                
+                
+                
+            } catch let error as NSError {
+                print(error)
+            }
+            
+            
+            
+            
+            
+            /// kkk
+            
+        })
+        
+        
+        
+        task.resume()
+        
+        return task
+    }
+    
+    
+    
+
+    
     
     
     
@@ -219,7 +347,8 @@ class ViewController: UIViewController, SSRadioButtonControllerDelegate, UITable
     @IBAction func tappedCI(sender: UITapGestureRecognizer)
     {
         print("tapped CI")
-        //Your animation code.
+
+        
     }
     
     @IBAction func longPressedCI(sender: UILongPressGestureRecognizer)

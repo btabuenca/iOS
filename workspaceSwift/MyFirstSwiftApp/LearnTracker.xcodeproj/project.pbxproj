@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67646F041BE92A2300BBC0C9 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67646F031BE92A2300BBC0C9 /* DataProvider.swift */; };
 		67AC21B91BA7E5360057BFD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AC21B81BA7E5360057BFD2 /* AppDelegate.swift */; };
 		67AC21BB1BA7E5360057BFD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AC21BA1BA7E5360057BFD2 /* ViewController.swift */; };
 		67AC21BE1BA7E5360057BFD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67AC21BC1BA7E5360057BFD2 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		67646F031BE92A2300BBC0C9 /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		67AC21B31BA7E5360057BFD2 /* LearnTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67AC21B71BA7E5360057BFD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67AC21B81BA7E5360057BFD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				67AC21C11BA7E5360057BFD2 /* LaunchScreen.xib */,
 				67AC21B61BA7E5360057BFD2 /* Supporting Files */,
 				67CC94BD1BE3C18E00504D29 /* Assignment.swift */,
+				67646F031BE92A2300BBC0C9 /* DataProvider.swift */,
 			);
 			path = MyFirstSwiftApp;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67646F041BE92A2300BBC0C9 /* DataProvider.swift in Sources */,
 				67AC21BB1BA7E5360057BFD2 /* ViewController.swift in Sources */,
 				67DD05B41BB91C7A00D33053 /* SSRadioButtonsController.swift in Sources */,
 				67AC21B91BA7E5360057BFD2 /* AppDelegate.swift in Sources */,

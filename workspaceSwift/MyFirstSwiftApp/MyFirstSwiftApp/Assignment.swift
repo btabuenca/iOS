@@ -11,4 +11,5 @@ import Foundation
 // Object assignment
 struct Assignment {
     let name : String
+    let desc : String
 }
