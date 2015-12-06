@@ -2,8 +2,6 @@
 //  ViewController.swift
 //  Filterer
 //
-//  Created by Jack on 2015-09-22.
-//  Copyright © 2015 UofT. All rights reserved.
 //
 
 import UIKit
@@ -12,6 +10,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     var filteredImage: UIImage?
     var timer: NSTimer?
+    var lastFilter: String?
     
     @IBOutlet var imageView: UIImageView!
     
@@ -26,10 +25,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Submenu buttons. Filters
     @IBOutlet var fRedButton: [UIButton]!
+    
+    @IBOutlet weak var fRedButtonNC: UIButton!
     @IBOutlet weak var fGreenButton: UIButton!
     @IBOutlet weak var fBlueButton: UIButton!
     @IBOutlet weak var fYellowButton: UIButton!
     @IBOutlet weak var fPurpleButton: UIButton!
+    
+    @IBOutlet weak var sliderGradient: UISlider!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +58,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let rgbaImageA = RGBAImage(image: image)!
         rgbaImageA.applyEffect("Blue", gradient: 2)
         filteredImage = rgbaImageA.toUIImage()!
+        
+        
+        fGreenButton.setImage(UIImage(named: "gre_150x"), forState: UIControlState.Normal)
+        fBlueButton.setImage(UIImage(named: "blu_150x"), forState: UIControlState.Normal)
+        fPurpleButton.setImage(UIImage(named: "pur_150x"), forState: UIControlState.Normal)
+        fRedButtonNC.setImage(UIImage(named: "yel_150x"), forState: UIControlState.Normal)
+        fYellowButton.setImage(UIImage(named: "yel_150x"), forState: UIControlState.Normal)
+        
+        sliderGradient.enabled = false
+        
         
         
     }
@@ -116,9 +130,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             sender.selected = false
             compareButton.enabled = false
             compareButton.selected = false
+            sliderGradient.enabled = false
         } else {
             showSecondaryMenu()
             sender.selected = true
+            sliderGradient.enabled = true
         }
     }
     
@@ -155,19 +171,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Get original image
         let image = UIImage(named: "gah")!
+        lastFilter = "Red"
         
         // Apply filter
         let rgbaImageA = RGBAImage(image: image)!
-        rgbaImageA.applyEffect("Red", gradient: 2)
+        rgbaImageA.applyEffect(lastFilter!, gradient: Int(round(sliderGradient.value)))
         filteredImage = rgbaImageA.toUIImage()!
         
         showFiltered()
-        
-        
-        UIView.animateWithDuration(1){
-            view.alpha = 1.0
-            
-        }
+    
         
     }
     
@@ -177,13 +189,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Get original image
         let image = UIImage(named: "gah")!
+        lastFilter = "Green"
         
         // Apply filter
         let rgbaImageA = RGBAImage(image: image)!
-        rgbaImageA.applyEffect("Green", gradient: 2)
+        rgbaImageA.applyEffect(lastFilter!, gradient: Int(round(sliderGradient.value)))
         filteredImage = rgbaImageA.toUIImage()!
         
         showFiltered()
+    
         
     }
     
@@ -192,10 +206,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Get original image
         let image = UIImage(named: "gah")!
+        lastFilter = "Blue"
         
         // Apply filter
         let rgbaImageA = RGBAImage(image: image)!
-        rgbaImageA.applyEffect("Blue", gradient: 2)
+        rgbaImageA.applyEffect(lastFilter!, gradient: Int(round(sliderGradient.value)))
         filteredImage = rgbaImageA.toUIImage()!
         
         showFiltered()
@@ -207,10 +222,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Get original image
         let image = UIImage(named: "gah")!
+        lastFilter = "Yellow"
         
         // Apply filter
         let rgbaImageA = RGBAImage(image: image)!
-        rgbaImageA.applyEffect("Yellow", gradient: 2)
+        rgbaImageA.applyEffect(lastFilter!, gradient: Int(round(sliderGradient.value)))
         filteredImage = rgbaImageA.toUIImage()!
         
         showFiltered()
@@ -222,10 +238,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Get original image
         let image = UIImage(named: "gah")!
+        lastFilter = "Purple"
         
         // Apply filter
         let rgbaImageA = RGBAImage(image: image)!
-        rgbaImageA.applyEffect("Purple", gradient: 2)
+        rgbaImageA.applyEffect(lastFilter!, gradient: Int(round(sliderGradient.value)))
         filteredImage = rgbaImageA.toUIImage()!
         
         showFiltered()
@@ -334,6 +351,38 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 }
         }
     }
+    
+    
+    func animateImage(no:Int) {
+        
+//
+//        var back: UIImageView!
+//        var front: UIImageView!
+//        
+//        
+//        self.front = UIImageView(image: UIImage(named: "heads.png"))
+//        self.back = UIImageView(image: UIImage(named: "tails.png"))
+//        
+//        
+//        self.cardView.addSubview(self.back)
+//        UIView.transitionFromView(self.back, toView: self.front, duration: 1, options: UIViewAnimationOptions.TransitionFlipFromRight , completion: nil)
+//        
+        
+    }
+    
+    
+    @IBAction func onSliderValueChanged(sender: AnyObject) {
+        
+        // Apply last filter
+        let image = UIImage(named: "gah")!
+        let rgbaImageA = RGBAImage(image: image)!
+        rgbaImageA.applyEffect(lastFilter!, gradient: Int(round(sliderGradient.value)))
+        filteredImage = rgbaImageA.toUIImage()!
+        
+        showFiltered()
+        
+    }
+    
     
     
 

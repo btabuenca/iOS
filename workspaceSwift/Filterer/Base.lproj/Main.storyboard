@@ -28,7 +28,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPg-yq-mNp">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
                                                 <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Qiv-OS-HEF"/>
@@ -39,7 +39,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C6B-1F-j0K">
-                                                <rect key="frame" x="150" y="0.0" width="150" height="44"/>
+                                                <rect key="frame" x="120" y="0.0" width="120" height="44"/>
                                                 <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="9TF-bC-3of"/>
@@ -49,8 +49,15 @@
                                                     <action selector="onFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bde-Ke-RWf"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPg-2N-f93">
-                                                <rect key="frame" x="300" y="0.0" width="150" height="44"/>
+                                            <slider opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="PkQ-Xy-OtF">
+                                                <rect key="frame" x="238" y="0.0" width="124" height="45"/>
+                                                <animations/>
+                                                <connections>
+                                                    <action selector="onSliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="91u-lz-95J"/>
+                                                </connections>
+                                            </slider>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPg-2N-f93">
+                                                <rect key="frame" x="360" y="0.0" width="120" height="44"/>
                                                 <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="zgf-3k-aR7"/>
@@ -61,7 +68,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Leg-ry-Zqw">
-                                                <rect key="frame" x="450" y="0.0" width="150" height="44"/>
+                                                <rect key="frame" x="480" y="0.0" width="120" height="44"/>
                                                 <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="IZl-Nh-MXv"/>
@@ -103,11 +110,13 @@
                         <outlet property="fBlueButton" destination="sNq-be-bSy" id="F59-KY-s6g"/>
                         <outlet property="fGreenButton" destination="axt-GK-a6m" id="fyt-Xv-ycv"/>
                         <outlet property="fPurpleButton" destination="7P8-VM-YCw" id="QRz-XO-1u5"/>
+                        <outlet property="fRedButtonNC" destination="Drk-Kp-614" id="b9g-bL-vOC"/>
                         <outlet property="fYellowButton" destination="zUq-ef-bpc" id="WDL-yU-hSS"/>
                         <outlet property="filterButton" destination="C6B-1F-j0K" id="6Kf-1q-zun"/>
                         <outlet property="headingMenu" destination="aoZ-vb-W3K" id="QnW-nz-JLx"/>
                         <outlet property="imageView" destination="aND-Em-4Dd" id="vbi-rB-DhQ"/>
                         <outlet property="secondaryMenu" destination="ePS-oG-ZHP" id="Be7-JW-Iwe"/>
+                        <outlet property="sliderGradient" destination="PkQ-Xy-OtF" id="2m2-l9-UZm"/>
                         <outletCollection property="fRedButton" destination="Drk-Kp-614" collectionClass="NSMutableArray" id="lHK-DG-gol"/>
                     </connections>
                 </viewController>
@@ -119,7 +128,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="n3M-NR-6VP">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Drk-Kp-614">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Drk-Kp-614">
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="128"/>
                                     <animations/>
                                     <state key="normal" title="Red">
@@ -129,7 +138,7 @@
                                         <action selector="applyRedFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KNg-sj-bHw"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axt-GK-a6m">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="axt-GK-a6m">
                                     <rect key="frame" x="48" y="0.0" width="48" height="128"/>
                                     <animations/>
                                     <state key="normal" title="Green">
@@ -139,7 +148,7 @@
                                         <action selector="applyGreenFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LQa-Oy-a9M"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNq-be-bSy">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sNq-be-bSy">
                                     <rect key="frame" x="96" y="0.0" width="48" height="128"/>
                                     <animations/>
                                     <state key="normal" title="Blue">
@@ -149,7 +158,7 @@
                                         <action selector="applyBlueFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3DU-Mk-Ho5"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUq-ef-bpc">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUq-ef-bpc">
                                     <rect key="frame" x="144" y="0.0" width="48" height="128"/>
                                     <animations/>
                                     <state key="normal" title="Yellow">
@@ -159,7 +168,7 @@
                                         <action selector="applyYellowFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c8A-QP-YYz"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7P8-VM-YCw">
+                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7P8-VM-YCw">
                                     <rect key="frame" x="192" y="0.0" width="48" height="128"/>
                                     <animations/>
                                     <state key="normal" title="Purple">
