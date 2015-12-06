@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "676B4FF61BFF6F0C00D69F5E"
+               BlueprintIdentifier = "4DC199931BB201E100AA75E7"
                BuildableName = "Filterer.app"
                BlueprintName = "Filterer"
                ReferencedContainer = "container:Filterer.xcodeproj">
@@ -28,31 +28,11 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "676B500A1BFF6F0C00D69F5E"
-               BuildableName = "FiltererTests.xctest"
-               BlueprintName = "FiltererTests"
-               ReferencedContainer = "container:Filterer.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "676B50151BFF6F0C00D69F5E"
-               BuildableName = "FiltererUITests.xctest"
-               BlueprintName = "FiltererUITests"
-               ReferencedContainer = "container:Filterer.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "676B4FF61BFF6F0C00D69F5E"
+            BlueprintIdentifier = "4DC199931BB201E100AA75E7"
             BuildableName = "Filterer.app"
             BlueprintName = "Filterer"
             ReferencedContainer = "container:Filterer.xcodeproj">
@@ -75,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "676B4FF61BFF6F0C00D69F5E"
+            BlueprintIdentifier = "4DC199931BB201E100AA75E7"
             BuildableName = "Filterer.app"
             BlueprintName = "Filterer"
             ReferencedContainer = "container:Filterer.xcodeproj">
@@ -94,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "676B4FF61BFF6F0C00D69F5E"
+            BlueprintIdentifier = "4DC199931BB201E100AA75E7"
             BuildableName = "Filterer.app"
             BlueprintName = "Filterer"
             ReferencedContainer = "container:Filterer.xcodeproj">

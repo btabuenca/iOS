@@ -1,7 +1,5 @@
 import UIKit
 
-
-
 public struct Pixel {
     public var value: UInt32
     
@@ -13,7 +11,7 @@ public struct Pixel {
             value = UInt32(newValue) | (value & 0xFFFFFF00)
         }
     }
-    
+
     public var green: UInt8 {
         get {
             return UInt8((value >> 8) & 0xFF)
@@ -42,12 +40,11 @@ public struct Pixel {
     }
 }
 
-public struct RGBAImage : Filter {
+public struct RGBAImage {
     public var pixels: UnsafeMutableBufferPointer<Pixel>
     
     public var width: Int
     public var height: Int
-    
     
     public init?(image: UIImage) {
         guard let cgImage = image.CGImage else { return nil }
@@ -84,7 +81,8 @@ public struct RGBAImage : Filter {
         
         return image
     }
-    
+
+
     //
     // Returns average R G B colours
     //  for image
@@ -94,7 +92,7 @@ public struct RGBAImage : Filter {
         var totalR = 0
         var totalG = 0
         var totalB = 0
-                
+        
         for pixel in pixels {
             totalR += Int(pixel.red)
             totalG += Int(pixel.green)
@@ -112,9 +110,9 @@ public struct RGBAImage : Filter {
         
         return (avgR, avgG, avgB)
         
-
+        
     }
-
+    
     
     //
     // Create the image processor
@@ -150,43 +148,43 @@ public struct RGBAImage : Filter {
                     pixel.blue = UInt8(124)
                 }
                 
-
+                
                 pixels[index] = pixel
                 
             }
         }
     }
     
-
+    
     //
     // Create the image processor
     // Encapsulate your chosen Filter parameters and/or formulas in a struct/class definition.
     //
     func getPxEffect(effect: String, gradient: Int, pxToModify: UInt8) -> UInt8 {
-
+        
         var g = 40 * gradient
         if g > 255 {
             g = 0
         }
         
-
+        
         switch effect{
-               case "Red":
-                    return max(UInt8(255 - g), pxToModify) // Redify
-                case "Blue":
-                    return min(UInt8(0 + g), pxToModify) // Bluceify
-                case "Green":
-                    return max(UInt8(255 - g), pxToModify) // Greenefy
-                case "Pink":
-                    return min(UInt8(0 + g), pxToModify) // Pinkify
-                case "Purple":
-                    return max(UInt8(255 - g), pxToModify) // Purplecify
-                case "Yellow":
-                    return min(UInt8(0 + g), pxToModify) // Yellowcify
-                default:
-                    return UInt8(124)
+        case "Red":
+            return max(UInt8(255 - g), pxToModify) // Redify
+        case "Blue":
+            return min(UInt8(0 + g), pxToModify) // Bluceify
+        case "Green":
+            return max(UInt8(255 - g), pxToModify) // Greenefy
+        case "Pink":
+            return min(UInt8(0 + g), pxToModify) // Pinkify
+        case "Purple":
+            return max(UInt8(255 - g), pxToModify) // Purplecify
+        case "Yellow":
+            return min(UInt8(0 + g), pxToModify) // Yellowcify
+        default:
+            return UInt8(124)
         }
-                
+        
         
         
     }
@@ -195,7 +193,7 @@ public struct RGBAImage : Filter {
     //
     // Create predefined filters
     // Create five reasonable default Filter configurations (e.g. "50% Brightness”, “2x Contrast”), and provide an interface to access instances of such defaults by name.
-    // (e.g. could be custom subclasses of a Filter class, or static instances of Filter available in your ImageProcessor interface, or a Dictionary of Filter instances). 
+    // (e.g. could be custom subclasses of a Filter class, or static instances of Filter available in your ImageProcessor interface, or a Dictionary of Filter instances).
     // There is no requirement to do this in a specific manner, but it’s good to think about the different ways you could go about it.
     //
     //
@@ -230,7 +228,4 @@ protocol Filter {
     func yellowcify()
     
 }
-
-
-
 

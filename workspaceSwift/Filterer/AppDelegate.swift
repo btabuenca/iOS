@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Filterer
 //
-//  Created by Bernardo Tabuenca on 20/11/15.
-//  Copyright © 2015 Bernardo Tabuenca. All rights reserved.
+//  Created by Jack on 2015-09-22.
+//  Copyright © 2015 UofT. All rights reserved.
 //
 
 import UIKit
