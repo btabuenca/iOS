@@ -21,7 +21,7 @@
 		67708C191C18A635003502A5 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67708C181C18A635003502A5 /* Course.swift */; };
 		67708C1B1C18A722003502A5 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67708C1A1C18A722003502A5 /* Activity.swift */; };
 		67D41E7B1C173BC6009ED8BC /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D41E7A1C173BC6009ED8BC /* SplashViewController.swift */; };
-		67E96A3F1C21C2D000CD466D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E96A3E1C21C2D000CD466D /* Session.swift */; };
+		67E96A3F1C21C2D000CD466D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E96A3E1C21C2D000CD466D /* Persistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +62,7 @@
 		67708C181C18A635003502A5 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		67708C1A1C18A722003502A5 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		67D41E7A1C173BC6009ED8BC /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
-		67E96A3E1C21C2D000CD466D /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		67E96A3E1C21C2D000CD466D /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +119,7 @@
 				67708C1A1C18A722003502A5 /* Activity.swift */,
 				67708C161C1894A7003502A5 /* HTTPReqManager.swift */,
 				670FA29D1C16D26F00EF21F8 /* HistoryViewController.swift */,
-				67E96A3E1C21C2D000CD466D /* Session.swift */,
+				67E96A3E1C21C2D000CD466D /* Persistence.swift */,
 				670FA29B1C16D26F00EF21F8 /* TrackViewController.swift */,
 				67D41E7A1C173BC6009ED8BC /* SplashViewController.swift */,
 				670FA2C91C16D94F00EF21F8 /* StatsViewController.swift */,
@@ -280,7 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67E96A3F1C21C2D000CD466D /* Session.swift in Sources */,
+				67E96A3F1C21C2D000CD466D /* Persistence.swift in Sources */,
 				67708C191C18A635003502A5 /* Course.swift in Sources */,
 				670FA29E1C16D26F00EF21F8 /* HistoryViewController.swift in Sources */,
 				67708C171C1894A7003502A5 /* HTTPReqManager.swift in Sources */,

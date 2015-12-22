@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  Persistence.swift
 //  LearnTracker
 //
 //  Created by Bernardo Tabuenca
@@ -7,14 +7,13 @@
 
 import UIKit
 
-class Session: NSObject, NSCoding {
+class Persistence: NSObject, NSCoding {
     // MARK: Properties
     
     var name: String
-    var course: String
+    var courseId: String
+    var courseName: String
     
-    HAY QUE HACER QUE ESTO SEA UN COURSE Y NO UN STRING PARA PODER ALMANCENARLO AL HACER LONG CLICK
-
     
     // MARK: Archiving Paths
     
@@ -26,20 +25,24 @@ class Session: NSObject, NSCoding {
     
     struct PropertyKey {
         static let nameKey = "name"
-        static let courseKey = "course"
+        static let courseIdKey = "courseId"
+        static let courseNameKey = "courseName"
     }
 
     // MARK: Initialization
     
-    init?(name: String, course: String) {
+    init?(name: String, courseId: String, courseName: String) {
         // Initialize stored properties.
         self.name = name
-        self.course = course
+        self.courseId = courseId
+        self.courseName = courseName
         
         super.init()
         
-        // Initialization should fail if there is no name or if the rating is negative.
-        if name.isEmpty || course.isEmpty {
+        // Initialization should fail if there is no values
+        if name.isEmpty || courseId.isEmpty || courseName.isEmpty {
+            print("Name, courseId or courseName are empty in Session.init")
+            
             return nil
         }
     }
@@ -48,15 +51,17 @@ class Session: NSObject, NSCoding {
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(name, forKey: PropertyKey.nameKey)
-        aCoder.encodeObject(course, forKey: PropertyKey.courseKey)
+        aCoder.encodeObject(courseId, forKey: PropertyKey.courseIdKey)
+        aCoder.encodeObject(courseName, forKey: PropertyKey.courseNameKey)
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
         let name = aDecoder.decodeObjectForKey(PropertyKey.nameKey) as! String
-        let course = aDecoder.decodeObjectForKey(PropertyKey.courseKey) as! String
+        let courseId = aDecoder.decodeObjectForKey(PropertyKey.courseIdKey) as! String
+        let courseName = aDecoder.decodeObjectForKey(PropertyKey.courseNameKey) as! String
         
         // Must call designated initializer.
-        self.init(name: name, course: course)
+        self.init(name: name, courseId: courseId, courseName: courseName)
     }
 
 }

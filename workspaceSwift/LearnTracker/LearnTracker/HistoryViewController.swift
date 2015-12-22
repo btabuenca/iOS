@@ -11,16 +11,29 @@ import UIKit
 //
 // History controller
 //
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITableViewDelegate {
     
     
     @IBOutlet weak var tavleView: UITableView!
     
+    @IBOutlet weak var logoBar: UIView!
+    
+    @IBOutlet weak var logoImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        // Init images
+        logoBar.backgroundColor = UIColorFromRGB(0x9CA31E)
+        
+        let imgBar = UIImage(named: "ltbar_trasp_x50")!
+        logoImageView.image = imgBar
+        logoImageView.contentMode = UIViewContentMode.ScaleAspectFit
+
+        self.tavleView.delegate = self
+        
+//        
 //        var recognizer = UISwipeGestureRecognizer(target: self, action: "didSwipe")
 //        self.tavleView.addGestureRecognizer(recognizer)
         
@@ -36,59 +49,29 @@ class SecondViewController: UIViewController {
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressedRow:")
         longPressRecognizer.minimumPressDuration = 0.5
         tavleView.addGestureRecognizer(longPressRecognizer)
- 
-        
-
-        // Refresh table
-//        dispatch_async(dispatch_get_main_queue(), {
-//            self.tavleView.reloadData()
-//        })
-        
         
     }
-    
-    func longPressedRow(gestureRecognizer:UIGestureRecognizer) {
-        
-        if (gestureRecognizer.state == UIGestureRecognizerState.Ended) {
-            print("STATE ENDED")
-            //Do Whatever You want on End of Gesture
-        }
-        else if (gestureRecognizer.state == UIGestureRecognizerState.Began){
-            print("STATE BEGAN")
-            //Do Whatever You want on Began of Gesture
-        }
-        
-        print("Selecciona \(tavleView.indexPathForSelectedRow?.row) ")
-        
-//        let indexPath = tavleView.indexPathForSelectedRow
-//        
-//        let currentCell = tavleView.cellForRowAtIndexPath(indexPath!)! as UITableViewCell
-//        
-//        print("Texto \(currentCell.textLabel!.text) ")
-        
-    }
-    
     
 
     
 //    
 //    func didSwipe(recognizer: UIGestureRecognizer) {
 //        
-//        print("CLick aaaaaaaa")
+//        print("Swiping ")
 //        
-////        if recognizer.state == UIGestureRecognizerState.Ended {
-////            let swipeLocation = recognizer.locationInView(tavleView)
-////            if let swipedIndexPath = tavleView.indexPathForRowAtPoint(swipeLocation) {
-////                if let swipedCell = tavleView.cellForRowAtIndexPath(swipedIndexPath) {
-////                    print("CLick aaaaaaaa")
-////                    //esto no funciona
-////                    //print("You selected cell #\(swipedCell.textLabel)!")
-////
-////                    
-////                    
-////                }
-////            }
-////        }
+//        if recognizer.state == UIGestureRecognizerState.Ended {
+//            let swipeLocation = recognizer.locationInView(tavleView)
+//            if let swipedIndexPath = tavleView.indexPathForRowAtPoint(swipeLocation) {
+//                if let swipedCell = tavleView.cellForRowAtIndexPath(swipedIndexPath) {
+//                    print("CLick aaaaaaaa")
+//                    //esto no funciona
+//                    //print("You selected cell #\(swipedCell.textLabel)!")
+//
+//                    
+//                    
+//                }
+//            }
+//        }
 //    }
 //    
     
@@ -145,10 +128,12 @@ class SecondViewController: UIViewController {
         
         
         let cell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
-        cell.textLabel?.text = act.idSubject
-        cell.imageView?.image = UIImage(named: "bullet_71x")
+        
+        
+        cell.textLabel?.text = "[\(mins) mins] \(act.idSubject)"
+        cell.imageView?.image = UIImage(named: "history")
         let x : Int64 = act.dateCheckIn
-        cell.detailTextLabel?.text = " \(dateFormatter.stringFromDate(theDateCI)) [\(mins) mins]"
+        cell.detailTextLabel?.text = " Started \(dateFormatter.stringFromDate(theDateCI)) "
         
 
         
@@ -178,84 +163,14 @@ class SecondViewController: UIViewController {
 
     
     
-
-    
-    
-    
-    
-    // Handle onClick event
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        print("CLick aaaaaaaa")
-//        //esto no funciona
-//        print("You selected cell #\(indexPath.row)!")
-//
-//        
-//    }
-
-    
-    
-    
-    
-//    
-//    //
-//    // Handle get request
-//    //
-//    func sendRequest(url: String) -> NSURLSessionTask {
-//        
-//        
-//        let requestURL = NSURL(string: url)!
-//        let request = NSMutableURLRequest(URL: requestURL)
-//        request.HTTPMethod = "GET"
-//        
-//        let session = NSURLSession.sharedSession()
-//        let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
-//            print(data)
-//            print(response)
-//            print(error)
-//            
-//            if error != nil {
-//                print("error=\(error)")
-//                return
-//            }
-//            
-//            
-//            do {
-//                let jsonResult:AnyObject? = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableLeaves) as? NSDictionary
-//
-//                if let result = jsonResult as? NSDictionary {
-//                    if let theItems = result["items"] as? NSArray {
-//                        for anItem : AnyObject in theItems {
-//                            //print("vamos3 = \(anItem)")
-//                            if let resultItem = anItem as? NSDictionary {
-//                                if let theDesc = resultItem["subject_task_desc"] as? NSString {
-//                                    if let theAltDesc = resultItem["subject_task_alternative_desc"] as? NSString {
-//                                        if let theOrder = resultItem["subject_task_order"] as? Int {
-//                                            //print("vamos4 = \(theDesc) \(theAltDesc) \(theOrder)")
-//                                            
-//                                            // Load data
-//                                            self.assignments.append(Assignment(name:theDesc as String, desc: theAltDesc as String, order: theOrder as Int))
-//
-//                                        }
-//                                    }
-//                                }
-//                            }
-//                        } // for
-//                        
-//                        // Refresh table
-//                        dispatch_async(dispatch_get_main_queue(), {
-//                            self.tavleView.reloadData()
-//                        })
-//                    }
-//                }
-//            } catch let error as NSError {
-//                print(error)
-//            }
-//        })
-//        task.resume()
-//        
-//        
-//        return task
-//    }
+    func UIColorFromRGB(rgbValue: UInt) -> UIColor {
+        return UIColor(
+            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+            alpha: CGFloat(1.0)
+        )
+    }
     
 
 }

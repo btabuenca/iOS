@@ -4,6 +4,21 @@ import UIKit
 
 var str = "Hello, playground"
 
+
+
+var seconds: NSTimeInterval = NSDate().timeIntervalSince1970
+var millsTimestamp:Int64 = Int64(seconds * 1000)
+
+
+var date = NSDate()
+
+var calendar = NSCalendar.currentCalendar()
+
+var components = calendar.components([.Year, .Month, .Day, .Hour, .Minute, .Second], fromDate: date)
+
+
+
+
 // This var accepts nil as values because of th question mark
 var optionalName: String? = "John Appleseed"
 

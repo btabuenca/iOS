@@ -18,8 +18,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h3J-OM-jRG" userLabel="Subjects View">
-                                <rect key="frame" x="0.0" y="20" width="600" height="501"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gvg-FB-bWW" userLabel="Logo Bar">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MwY-er-ego">
+                                        <rect key="frame" x="20" y="20" width="250" height="50"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h3J-OM-jRG" userLabel="Subjects View">
+                                <rect key="frame" x="0.0" y="70" width="600" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="9pv-A4-QxB" id="O10-hV-Y9R"/>
@@ -27,14 +36,11 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="h3J-OM-jRG" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="NhT-hu-hul"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="h3J-OM-jRG" secondAttribute="trailing" id="qr8-fA-GTo"/>
-                            <constraint firstItem="h3J-OM-jRG" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="zdQ-fA-iWB"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Track" image="track" id="acW-dT-cKf"/>
                     <connections>
+                        <outlet property="logoBar" destination="Gvg-FB-bWW" id="ULs-S9-MIN"/>
+                        <outlet property="logoImageView" destination="MwY-er-ego" id="QDg-G8-DQJ"/>
                         <outlet property="subjectsTable" destination="h3J-OM-jRG" id="m85-F7-zI9"/>
                     </connections>
                 </viewController>
@@ -93,8 +99,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WCO-za-bdv">
-                                <rect key="frame" x="0.0" y="20" width="600" height="531"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sT3-rv-xEU" userLabel="Logo Bar">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5hX-fZ-b83">
+                                        <rect key="frame" x="20" y="20" width="250" height="50"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WCO-za-bdv">
+                                <rect key="frame" x="0.0" y="70" width="600" height="473"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="8rJ-Kc-sve" id="bHN-HF-w98"/>
@@ -102,15 +117,11 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="WCO-za-bdv" secondAttribute="trailing" id="78T-cD-OTk"/>
-                            <constraint firstItem="WCO-za-bdv" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="DZo-BR-l0H"/>
-                            <constraint firstItem="WCO-za-bdv" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="J44-9Z-u4m"/>
-                            <constraint firstItem="WCO-za-bdv" firstAttribute="bottom" secondItem="Djb-ko-YwX" secondAttribute="top" id="oy8-dU-ao5"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Records" image="history" id="cPa-gy-q4n"/>
                     <connections>
+                        <outlet property="logoBar" destination="sT3-rv-xEU" id="s95-lh-bJv"/>
+                        <outlet property="logoImageView" destination="5hX-fZ-b83" id="ZHT-oH-1TQ"/>
                         <outlet property="tavleView" destination="WCO-za-bdv" id="aq4-Vg-bx4"/>
                     </connections>
                 </viewController>
@@ -130,49 +141,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UcN-aH-aLK" userLabel="Splash Image View">
-                                <rect key="frame" x="0.0" y="18" width="50" height="50"/>
-                            </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VEg-t6-rU1">
-                                <rect key="frame" x="0.0" y="496" width="600" height="55"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M2g-De-AoR">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="70"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4C-jn-K2S">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zVA-6p-r2E">
+                                        <rect key="frame" x="20" y="20" width="250" height="50"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JG5-mU-GSJ">
+                                <rect key="frame" x="20" y="350" width="560" height="68"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Course ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oE8-CG-PZe" userLabel="CourseId">
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="32"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LearnTracker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="peP-kt-jmi">
-                                        <rect key="frame" x="0.0" y="21" width="600" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Course Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCW-CY-yIm" userLabel="CourseName">
+                                        <rect key="frame" x="0.0" y="32" width="560" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VEg-t6-rU1">
+                                <rect key="frame" x="0.0" y="496" width="600" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NE4-dh-HpQ" userLabel="User Button">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="onClickUserButton:" destination="lN6-sQ-n9H" eventType="touchUpInside" id="948-Pp-ty1"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I4C-jn-K2S">
+                                        <rect key="frame" x="0.0" y="30" width="600" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(c) Bernardo Tabuenca. Open Universiteit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFK-6c-g7k">
-                                        <rect key="frame" x="0.0" y="41" width="600" height="14"/>
+                                        <rect key="frame" x="0.0" y="51" width="600" height="14"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="JG5-mU-GSJ">
-                                <rect key="frame" x="20" y="323" width="560" height="41"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Course ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oE8-CG-PZe" userLabel="CourseId">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Course Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCW-CY-yIm" userLabel="CourseName">
-                                        <rect key="frame" x="0.0" y="21" width="560" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UcN-aH-aLK" userLabel="Splash Image View">
+                                <rect key="frame" x="20" y="78" width="32" height="24"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -189,7 +210,10 @@
                         <outlet property="courseNameLabel" destination="VCW-CY-yIm" id="qLj-4K-4g7"/>
                         <outlet property="coursesTableView" destination="YWE-be-el1" id="HiR-sM-pGn"/>
                         <outlet property="coursesUIView" destination="gKZ-Zu-LTi" id="Quf-FT-4Am"/>
+                        <outlet property="logoBar" destination="M2g-De-AoR" id="vxj-kv-tzl"/>
+                        <outlet property="logoImageView" destination="zVA-6p-r2E" id="4ZO-QK-vwi"/>
                         <outlet property="splashImageView" destination="UcN-aH-aLK" id="2cJ-xw-XjY"/>
+                        <outlet property="userButton" destination="NE4-dh-HpQ" id="a2k-cL-qso"/>
                         <outlet property="userLaber" destination="I4C-jn-K2S" id="gFt-mJ-6Xq"/>
                     </connections>
                 </viewController>
@@ -220,7 +244,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="-293" y="953"/>
+            <point key="canvasLocation" x="-281" y="969"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
