@@ -6,6 +6,35 @@ var str = "Hello, playground"
 
 
 
+let key = "a"
+let value = Int64(0)
+var summary = [key: value]
+
+if summary["b"] == nil {
+    // Add element
+    summary["b"] = 66
+    
+    print("papo")
+}else{
+    // Increase values
+    var s = summary["b"]
+    summary["b"] = s! + 77
+    
+    print("papo")
+}
+
+summary
+
+
+if summary["b"] != nil {
+    print("pepe")
+}else{
+    print("papo")
+}
+
+
+
+
 var seconds: NSTimeInterval = NSDate().timeIntervalSince1970
 var millsTimestamp:Int64 = Int64(seconds * 1000)
 

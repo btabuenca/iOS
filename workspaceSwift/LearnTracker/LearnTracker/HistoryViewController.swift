@@ -11,70 +11,42 @@ import UIKit
 //
 // History controller
 //
-class SecondViewController: UIViewController, UITableViewDelegate {
+class SecondViewController: UIViewController, UITableViewDelegate {    
     
     
     @IBOutlet weak var tavleView: UITableView!
-    
-    @IBOutlet weak var logoBar: UIView!
-    
+    @IBOutlet weak var topBarUIView: UIView!
     @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var emptyLeftImageView: UIImageView!
+    @IBOutlet weak var emptyRightImageView: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         // Init images
-        logoBar.backgroundColor = UIColorFromRGB(0x9CA31E)
+        topBarUIView.backgroundColor = UIColorFromRGB(0x9CA31E)
+        logoImageView.backgroundColor = UIColorFromRGB(0x9CA31E)
+        emptyLeftImageView.backgroundColor = UIColorFromRGB(0x9CA31E)
+        emptyRightImageView.backgroundColor = UIColorFromRGB(0x9CA31E)
         
-        let imgBar = UIImage(named: "ltbar_trasp_x50")!
-        logoImageView.image = imgBar
+        
         logoImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        emptyLeftImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        emptyRightImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        
 
+        //self.tavleView = HTTPReqManager.sharedInstance.activities
+        
         self.tavleView.delegate = self
-        
-//        
-//        var recognizer = UISwipeGestureRecognizer(target: self, action: "didSwipe")
-//        self.tavleView.addGestureRecognizer(recognizer)
-        
-        
-        //self.tavleView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        // Load data
-        //sendRequest("https://lifelong-learning-hub.appspot.com/_ah/api/subjectendpoint/v1/subject/course/N35231")
-        
 
-        self.activities = HTTPReqManager.sharedInstance.activities
-        print("Number of activities \(activities.count) ")
-        
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressedRow:")
-        longPressRecognizer.minimumPressDuration = 0.5
-        tavleView.addGestureRecognizer(longPressRecognizer)
         
     }
     
-
-    
-//    
-//    func didSwipe(recognizer: UIGestureRecognizer) {
-//        
-//        print("Swiping ")
-//        
-//        if recognizer.state == UIGestureRecognizerState.Ended {
-//            let swipeLocation = recognizer.locationInView(tavleView)
-//            if let swipedIndexPath = tavleView.indexPathForRowAtPoint(swipeLocation) {
-//                if let swipedCell = tavleView.cellForRowAtIndexPath(swipedIndexPath) {
-//                    print("CLick aaaaaaaa")
-//                    //esto no funciona
-//                    //print("You selected cell #\(swipedCell.textLabel)!")
-//
-//                    
-//                    
-//                }
-//            }
-//        }
-//    }
-//    
-    
+    override func viewWillAppear(animated: Bool) {
+        tavleView.reloadData()
+    }
     
     
 
@@ -83,12 +55,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
-    //
-    // Datasource mangement
-    //
-    //var assignments = [Assignment]()
-    var activities = [Activity]()
+
     
     // Returns the number of chunks in the table
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -98,7 +65,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
     
     // Returns the number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities.count
+        return HTTPReqManager.sharedInstance.activities.count
     }
     
     // Content of the coverride ells
@@ -107,7 +74,7 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
         
-        let act = activities[indexPath.row]
+        let act = HTTPReqManager.sharedInstance.activities[indexPath.row]
         let duration : Double = Double(act.dateCheckOut - act.dateCheckIn)
         let seconds = duration / 1000
         let mins = seconds.minute
@@ -149,15 +116,23 @@ class SecondViewController: UIViewController, UITableViewDelegate {
         
         if editingStyle == UITableViewCellEditingStyle.Delete {
             deleteItem(indexPath.row)
+            
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
         }
     }
     
+    
+    
     func deleteItem(rowIndex: Int){
         
-        activities.removeAtIndex(rowIndex)
+        let a = HTTPReqManager.sharedInstance.activities[rowIndex]
+        HTTPReqManager.sharedInstance.deleteActivity(String(a.dateCheckIn), user: a.idUser)
         HTTPReqManager.sharedInstance.activities.removeAtIndex(rowIndex)
-        HTTPReqManager.sharedInstance.deleteActivityDB()
+        
+
+        //ESTO ESTA POR PROBAR
+        
         
     }
 

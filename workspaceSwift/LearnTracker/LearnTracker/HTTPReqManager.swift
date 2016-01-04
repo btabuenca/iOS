@@ -270,9 +270,50 @@ class HTTPReqManager{
         
         self.courses = [Course(id: "NS1010", desc: "Geographical Information Systems", active: true), Course(id: "N2322", desc: "German", active: false)]
         
-        self.activities = [Activity(idUser: "btb", idSubject: "Lesson 1", dateCheckIn: 1449734125056, dateCheckOut: 1449734195056, recordMode: 0), Activity(idUser: "btb", idSubject: "Lesson 1", dateCheckIn: 1449734225056, dateCheckOut: 1449734495056, recordMode: 0), Activity(idUser: "btb", idSubject: "Lesson 1", dateCheckIn: 1449734525056, dateCheckOut: 1449734995056, recordMode: 0)]
+        self.activities = [Activity(idUser: "btb", idSubject: "Lesson 1", dateCheckIn: 1449734125056, dateCheckOut: 1449734195056, recordMode: 0), Activity(idUser: "btb", idSubject: "Lesson 1", dateCheckIn: 1449734225056, dateCheckOut: 1449734495056, recordMode: 0), Activity(idUser: "btb", idSubject: "Lesson 1", dateCheckIn: 1449734525056, dateCheckOut: 1449734995056, recordMode: 0), Activity(idUser: "btb", idSubject: "Lesson 2", dateCheckIn: 1449734525056, dateCheckOut: 1449734995056, recordMode: 0), Activity(idUser: "btb", idSubject: "Lesson 3", dateCheckIn: 1449734525056, dateCheckOut: 1449734995056, recordMode: 0), Activity(idUser: "btb", idSubject: "Lesson 2", dateCheckIn: 1449734525056, dateCheckOut: 1449734995056, recordMode: 0), Activity(idUser: "btb", idSubject: "Lesson 4", dateCheckIn: 1449734525056, dateCheckOut: 1449734995056, recordMode: 0)]
         
         
+    }
+    
+    func deleteActivity(checkin: String, user: String){
+        
+        let s = "https://lifelong-learning-hub.appspot.com/_ah/api/activityendpoint/v1/activity/checkin/" + checkin + "/user/" + user
+        
+        print("New DELETE. \(s)")
+        
+//
+// https://lifelong-learning-hub.appspot.com/_ah/api/activityendpoint/v1/activity/checkin/1451323109462/user/ppp
+//
+        
+        
+//https://github.com/btabuenca/Android/blob/master/workspaceLearnTracker/3LHub/src/org/ounl/lifelonglearninghub/learntracker/gis/ou/db/ws/ActivityWSDeleteAsyncTask.java
+        
+        let requestURL = NSURL(string:s)!
+        
+        var request = NSMutableURLRequest(URL: requestURL)
+        request.HTTPMethod = "DELETE"
+        
+        let session = NSURLSession.sharedSession()
+        
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data, response, error in
+            if error != nil{
+                print("Error -> \(error)")
+                return
+            }
+            
+            do {
+                let result = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? [String:AnyObject]
+                
+                print("Result -> \(result)")
+                
+            } catch {
+                print("Error -> \(error)")
+            }
+        }
+        
+        
+        task.resume()
     }
     
     
@@ -328,16 +369,7 @@ class HTTPReqManager{
         return NSURLSessionTask()
     }
     
-    
-    
-    
-    
-    
 
-
-    func deleteActivityDB() {
-        // Here you have to make httprequest to delete activiti
-    }
     
     
     func printAssignments(assig : [Assignment]){
@@ -349,7 +381,57 @@ class HTTPReqManager{
         print("-------------End --------------------------------------")
         
     }
+    
+    
+    func getSummary()->Dictionary<String, Int64>{
         
+        let key = activities[0].idSubject
+        let value = Int64(0)
+        var summary = [key: value]
+        
+        
+        for a in activities {
+            
+            if summary[a.idSubject] == nil {
+                // Add element
+                summary[a.idSubject] = (a.dateCheckOut - a.dateCheckIn)
+                print("Add -> \(a.idSubject) *  \(a.idUser) * \(a.dateCheckIn) * \(a.dateCheckOut) * \(a.dateCheckOut - a.dateCheckIn)")
+                
+            }else{
+                // Increase value of existing element
+                let val = summary[a.idSubject]
+                let dif = (a.dateCheckOut - a.dateCheckIn)
+                summary[a.idSubject] = val! + dif
+                print("Inc -> \(a.idSubject) *  \(a.idUser) * \(a.dateCheckIn) * \(a.dateCheckOut) * \(a.dateCheckOut - a.dateCheckIn)")
+                
+            }
+            
+        }
+        
+        return summary
+        
+    }
+    
+
+    func printSummary(){
+        
+        var summary = getSummary()
+        
+        for (key, value) in summary {
+            
+            
+            let seconds = Double(value) / 1000
+            let mins = seconds.minute
+            
+            print("\(key) -> mills \(value) -> mins \(mins)")
+            
+            
+        }
+        
+    }
     
 }
+
+
+
 

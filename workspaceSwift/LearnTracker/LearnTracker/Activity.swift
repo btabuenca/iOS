@@ -14,7 +14,6 @@ struct Activity {
     let dateCheckOut : Int64
     let recordMode : Int
     
-    
     static let KEY_IDUSER = "id_user"
     static let KEY_IDSUBJECT = "id_subject"
     static let KEY_RECORDMODE = "activity_record_mode"

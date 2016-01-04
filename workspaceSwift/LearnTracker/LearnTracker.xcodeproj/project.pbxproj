@@ -17,6 +17,8 @@
 		670FA2BC1C16D26F00EF21F8 /* LearnTrackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670FA2BB1C16D26F00EF21F8 /* LearnTrackerUITests.swift */; };
 		670FA2CA1C16D94F00EF21F8 /* StatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670FA2C91C16D94F00EF21F8 /* StatsViewController.swift */; };
 		670FA2CC1C16E02200EF21F8 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670FA2CB1C16E02200EF21F8 /* Assignment.swift */; };
+		673070311C30C1DE004AF80A /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 673070271C309354004AF80A /* Charts.framework */; };
+		673070321C30C1DE004AF80A /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 673070271C309354004AF80A /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		67708C171C1894A7003502A5 /* HTTPReqManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67708C161C1894A7003502A5 /* HTTPReqManager.swift */; };
 		67708C191C18A635003502A5 /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67708C181C18A635003502A5 /* Course.swift */; };
 		67708C1B1C18A722003502A5 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67708C1A1C18A722003502A5 /* Activity.swift */; };
@@ -39,7 +41,49 @@
 			remoteGlobalIDString = 670FA2951C16D26F00EF21F8;
 			remoteInfo = LearnTracker;
 		};
+		673070261C309354004AF80A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 676A41E51C3090F40022AEE4 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
+		673070281C309354004AF80A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 676A41E51C3090F40022AEE4 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A52C5C371BAC5CA400594CDD;
+			remoteInfo = "Charts-TV";
+		};
+		6730702A1C309354004AF80A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 676A41E51C3090F40022AEE4 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06AEE7A21BDC3F8B009875AE;
+			remoteInfo = ChartsTests;
+		};
+		673070331C30C1DE004AF80A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 676A41E51C3090F40022AEE4 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5BA8EC3F1A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		673070391C30C1DE004AF80A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				673070321C30C1DE004AF80A /* Charts.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		670FA2961C16D26F00EF21F8 /* LearnTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +102,7 @@
 		670FA2BD1C16D26F00EF21F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		670FA2C91C16D94F00EF21F8 /* StatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsViewController.swift; sourceTree = "<group>"; };
 		670FA2CB1C16E02200EF21F8 /* Assignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
+		676A41E51C3090F40022AEE4 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "../../../../../tmp/ios-charts-master/Charts/Charts.xcodeproj"; sourceTree = "<group>"; };
 		67708C161C1894A7003502A5 /* HTTPReqManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPReqManager.swift; sourceTree = "<group>"; };
 		67708C181C18A635003502A5 /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		67708C1A1C18A722003502A5 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
@@ -70,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				673070311C30C1DE004AF80A /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +139,7 @@
 		670FA28D1C16D26F00EF21F8 = {
 			isa = PBXGroup;
 			children = (
+				676A41E51C3090F40022AEE4 /* Charts.xcodeproj */,
 				670FA2981C16D26F00EF21F8 /* LearnTracker */,
 				670FA2AF1C16D26F00EF21F8 /* LearnTrackerTests */,
 				670FA2BA1C16D26F00EF21F8 /* LearnTrackerUITests */,
@@ -149,6 +196,16 @@
 			path = LearnTrackerUITests;
 			sourceTree = "<group>";
 		};
+		673070211C309353004AF80A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				673070271C309354004AF80A /* Charts.framework */,
+				673070291C309354004AF80A /* Charts.framework */,
+				6730702B1C309354004AF80A /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -159,10 +216,12 @@
 				670FA2921C16D26F00EF21F8 /* Sources */,
 				670FA2931C16D26F00EF21F8 /* Frameworks */,
 				670FA2941C16D26F00EF21F8 /* Resources */,
+				673070391C30C1DE004AF80A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				673070341C30C1DE004AF80A /* PBXTargetDependency */,
 			);
 			name = LearnTracker;
 			productName = LearnTracker;
@@ -239,6 +298,12 @@
 			mainGroup = 670FA28D1C16D26F00EF21F8;
 			productRefGroup = 670FA2971C16D26F00EF21F8 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 673070211C309353004AF80A /* Products */;
+					ProjectRef = 676A41E51C3090F40022AEE4 /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				670FA2951C16D26F00EF21F8 /* LearnTracker */,
@@ -247,6 +312,30 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		673070271C309354004AF80A /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 673070261C309354004AF80A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		673070291C309354004AF80A /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 673070281C309354004AF80A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6730702B1C309354004AF80A /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 6730702A1C309354004AF80A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		670FA2941C16D26F00EF21F8 /* Resources */ = {
@@ -321,6 +410,11 @@
 			isa = PBXTargetDependency;
 			target = 670FA2951C16D26F00EF21F8 /* LearnTracker */;
 			targetProxy = 670FA2B81C16D26F00EF21F8 /* PBXContainerItemProxy */;
+		};
+		673070341C30C1DE004AF80A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Charts-iOS";
+			targetProxy = 673070331C30C1DE004AF80A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -431,6 +525,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = LearnTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.celstec.btb.LearnTracker;
@@ -442,6 +537,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = LearnTracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.celstec.btb.LearnTracker;

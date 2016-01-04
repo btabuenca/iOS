@@ -15,10 +15,11 @@ class FirstViewController: UIViewController, UITableViewDelegate {
 
 
     @IBOutlet weak var subjectsTable: UITableView!
-    //@IBOutlet var checkInOutView: UIView!
-    @IBOutlet weak var logoBar: UIView!
     @IBOutlet weak var logoImageView: UIImageView!
 
+    @IBOutlet weak var emptyLeftImageView: UIImageView!
+    @IBOutlet weak var emptyRightImageView: UIImageView!
+    @IBOutlet weak var topBarUIView: UIView!
     
     //var assignments = [Assignment]()
     
@@ -38,44 +39,21 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
-
         // Init images
-        logoBar.backgroundColor = UIColorFromRGB(0x9CA31E)
-        
-        let imgBar = UIImage(named: "ltbar_trasp_x50")!
-        logoImageView.image = imgBar
+        emptyLeftImageView.backgroundColor = UIColorFromRGB(0x9CA31E)
+        emptyLeftImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        emptyRightImageView.backgroundColor = UIColorFromRGB(0x9CA31E)
+        emptyRightImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        topBarUIView.backgroundColor = UIColorFromRGB(0x9CA31E)
+        logoImageView.backgroundColor = UIColorFromRGB(0x9CA31E)
         logoImageView.contentMode = UIViewContentMode.ScaleAspectFit
-        
-//        let imgRec = UIImage(named: "rec")
-//        recImageView.image = imgRec
-        
-        
-        
-//        self.assignments = HTTPReqManager.sharedInstance.assignments
-//        print("Number of assignments \(assignments.count) ")
-        
-        
-        
         
         
         self.subjectsTable.delegate = self
-        //self.subjectsTable.dataSource = self
-        
-//        
-//        checkInOutView.backgroundColor = UIColor.lightGrayColor().colorWithAlphaComponent(0.95)
-//        checkInOutView.translatesAutoresizingMaskIntoConstraints = false
-//        self.checkInOutView.backgroundColor = UIColor.clearColor()
-
-        
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
-        
         subjectsTable.reloadData()
-        
     }
     
     
@@ -115,10 +93,11 @@ class FirstViewController: UIViewController, UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         
-        
+
         let index = subjectsTable.indexPathForSelectedRow
         selectedCell = subjectsTable.cellForRowAtIndexPath(index!)! as UITableViewCell
         cellSelected = !cellSelected
+        
         
         NSLog("You selected cell number #\(indexPath.row)!")
         print("Text \(selectedCell.textLabel!.text) ")
@@ -133,14 +112,11 @@ class FirstViewController: UIViewController, UITableViewDelegate {
 
             print("Check in ...")
             selectedCell.imageView?.image = recImage
-            
             selectedCell.imageView?.alpha = 1
-
-            selectedCell.imageView?.layer.removeAllAnimations()
+            
+            
             UIView.animateWithDuration(0.6, delay: 0.3, options:[.Repeat, .Autoreverse], animations: { _ in
                             self.selectedCell.imageView?.alpha = 0 }, completion: nil)
-            
-            
             print("->Check in!! \(millsTimestamp)")
             
             timestampCI = millsTimestamp
@@ -150,7 +126,6 @@ class FirstViewController: UIViewController, UITableViewDelegate {
             
             print("... check out!")
             selectedCell.imageView?.image = playImage
-
             selectedCell.imageView?.alpha = 1
             selectedCell.imageView?.layer.removeAllAnimations()
 
@@ -168,9 +143,7 @@ class FirstViewController: UIViewController, UITableViewDelegate {
                 print("Inserted actiity !")
                 
             }else{
-                
                 print("Error. The order of the rows must match their position within the table. Mabye orders were not assigned properly in the backend")
-                
             }
             
             

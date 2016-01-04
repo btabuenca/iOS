@@ -10,11 +10,12 @@ import UIKit
 
 class SplashViewController: UIViewController, UITableViewDelegate {
 
-
     
     @IBOutlet weak var splashImageView: UIImageView!
     
     @IBOutlet weak var logoImageView: UIImageView!
+    
+    @IBOutlet weak var userImageView: UIImageView!
     
     @IBOutlet weak var logoBar: UIView!
     
@@ -28,8 +29,10 @@ class SplashViewController: UIViewController, UITableViewDelegate {
     
     @IBOutlet weak var courseNameLabel: UILabel!
     
+    
     @IBOutlet weak var userButton: UIButton!
     
+    @IBOutlet weak var barStackView: UIStackView!
     
     var selectedCell:UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "cell")
     
@@ -67,18 +70,41 @@ class SplashViewController: UIViewController, UITableViewDelegate {
         // Init images
         logoBar.backgroundColor = UIColorFromRGB(0x9CA31E)
         
-        let image = UIImage(named: "menu")!
-        splashImageView.image = image
-
-        let imgBar = UIImage(named: "ltbar_trasp_x50")!
-        logoImageView.image = imgBar
+        logoImageView.backgroundColor = UIColorFromRGB(0x9CA31E)
         logoImageView.contentMode = UIViewContentMode.ScaleAspectFit
         
+        splashImageView.backgroundColor = UIColorFromRGB(0x9CA31E)
+        splashImageView.contentMode = UIViewContentMode.ScaleAspectFit
         
-        // Init tap recognizers
+        userImageView.backgroundColor = UIColorFromRGB(0x9CA31E)
+        userImageView.contentMode = UIViewContentMode.ScaleAspectFit
+        
+        courseIdLabel.numberOfLines = 0
+        courseIdLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        courseIdLabel.sizeToFit()
+
+        courseNameLabel.numberOfLines = 0
+        courseNameLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
+        courseNameLabel.sizeToFit()
+        
+        
+        
+//        let image = UIImage(named: "menu")!
+//        splashImageView.image = image
+
+//        let imgBar = UIImage(named: "ltbar_trasp_x50")!
+//        logoImageView.image = imgBar
+
+        
+        
+        // Init recognizers
         splashImageView.userInteractionEnabled = true
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: "imageTapped:")
-        splashImageView.addGestureRecognizer(tapRecognizer)
+        let tapRecognizerM = UITapGestureRecognizer(target: self, action: "imageMenuTapped:")
+        splashImageView.addGestureRecognizer(tapRecognizerM)
+        
+        userImageView.userInteractionEnabled = true
+        let tapRecognizerU = UITapGestureRecognizer(target: self, action: "imageUserTapped:")
+        userImageView.addGestureRecognizer(tapRecognizerU)
                 
         
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: "longPressedRow:")
@@ -95,9 +121,13 @@ class SplashViewController: UIViewController, UITableViewDelegate {
         self.coursesTableView.delegate = self
         
         
-        // Load data
-        HTTPReqManager.sharedInstance.loadCourses()
-        loadNewCourse()
+        // Load real data
+        //HTTPReqManager.sharedInstance.loadCourses()
+        //loadNewCourse()
+        
+        // Load fake data
+        HTTPReqManager.sharedInstance.loadFakeData()
+        
 
 
         
@@ -125,27 +155,8 @@ class SplashViewController: UIViewController, UITableViewDelegate {
     
     
     @IBAction func onClickUserButton(sender: AnyObject) {
-
         
-        var alert = UIAlertController(title: "Update user", message: HTTPReqManager.sharedInstance.persistance.name, preferredStyle: UIAlertControllerStyle.Alert)
-        
-        alert.addTextFieldWithConfigurationHandler(configurationTextField)
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:handleCancel))
-        alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
-                    print("Done !!")
-                    print("Item : \(self.tField.text)")
-            
-                    self.userLaber.text =  self.tField.text
-            
-                    HTTPReqManager.sharedInstance.persistance.name = self.tField.text!
-                    self.persistSession()
-        
-                }))
-                self.presentViewController(alert, animated: true, completion: {
-                    print("completion block")
-                })
-        
-        
+        imageUserTapped(UITapGestureRecognizer())
     }
 
     
@@ -163,12 +174,21 @@ class SplashViewController: UIViewController, UITableViewDelegate {
     }
     
     
-    func imageTapped(gestureRecognizer: UITapGestureRecognizer) {
+    func imageMenuTapped(gestureRecognizer: UITapGestureRecognizer) {
 
         if displayedList {
-            
             // Hide courses list
-            coursesUIView.removeFromSuperview()
+            //coursesUIView.removeFromSuperview()
+            
+            
+            UIView.animateWithDuration(0.4, animations: {
+                self.coursesUIView.alpha = 0
+                }) { completed in
+                    if completed == true {
+                        self.coursesUIView.removeFromSuperview()
+                    }
+            }
+            
         }else{
             
             // Load view
@@ -177,11 +197,11 @@ class SplashViewController: UIViewController, UITableViewDelegate {
             // Display courses list
             view.addSubview(coursesUIView)
             
+            
             let height = coursesUIView.frame.size.height
             let width = coursesUIView.frame.size.width
             
-            coursesUIView.frame = CGRectMake(0, 102, width, height)
-            
+            coursesUIView.frame = CGRectMake(0, 70, width, height)
             let bottomConstraint = coursesUIView.bottomAnchor.constraintEqualToAnchor(coursesTableView.bottomAnchor)
             let topConstraint = coursesUIView.topAnchor.constraintEqualToAnchor(coursesTableView.topAnchor)
             let leftConstraint = coursesUIView.leftAnchor.constraintEqualToAnchor(coursesTableView.leftAnchor)
@@ -191,12 +211,38 @@ class SplashViewController: UIViewController, UITableViewDelegate {
             
             view.layoutIfNeeded()
             
+            self.coursesUIView.alpha = 0
+            UIView.animateWithDuration(0.4) {
+                self.coursesUIView.alpha = 1.0
+            }
+            
+                        
+            
         }
         
         displayedList = !displayedList
         
+    }
+    
+    func imageUserTapped(gestureRecognizer: UITapGestureRecognizer) {
         
+        var alert = UIAlertController(title: "Update user", message: HTTPReqManager.sharedInstance.persistance.name, preferredStyle: UIAlertControllerStyle.Alert)
         
+        alert.addTextFieldWithConfigurationHandler(configurationTextField)
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:handleCancel))
+        alert.addAction(UIAlertAction(title: "Done", style: UIAlertActionStyle.Default, handler:{ (UIAlertAction)in
+            print("Done !!")
+            print("Item : \(self.tField.text)")
+            
+            self.userLaber.text =  self.tField.text
+            
+            HTTPReqManager.sharedInstance.persistance.name = self.tField.text!
+            self.persistSession()
+            
+        }))
+        self.presentViewController(alert, animated: true, completion: {
+            print("completion block")
+        })
         
     }
     
@@ -223,22 +269,18 @@ class SplashViewController: UIViewController, UITableViewDelegate {
                 
                 if let textCell = selectedCell.textLabel?.text {
                     courseIdLabel.text = textCell
-                    courseIdLabel.numberOfLines = 0
-                    courseIdLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-                    courseIdLabel.sizeToFit()
                     HTTPReqManager.sharedInstance.persistance.courseId = textCell
                 }
                 if let detailTextCell = selectedCell.detailTextLabel?.text {
                     courseNameLabel.text = detailTextCell
-                    courseNameLabel.numberOfLines = 0
-                    courseNameLabel.lineBreakMode = NSLineBreakMode.ByWordWrapping
-                    courseNameLabel.sizeToFit()
                     HTTPReqManager.sharedInstance.persistance.courseName = detailTextCell
                 }
                 persistSession()
                 
                 // Reload data for selected courses from DB
-                loadNewCourse()
+                //loadNewCourse()
+                // Load fake data
+                HTTPReqManager.sharedInstance.loadFakeData()
                 
                 
                 
@@ -254,14 +296,11 @@ class SplashViewController: UIViewController, UITableViewDelegate {
             }
             
 
-        }
-        else if (gestureRecognizer.state == UIGestureRecognizerState.Ended){
+        }else if (gestureRecognizer.state == UIGestureRecognizerState.Ended){
             print("STATE End")
             coursesUIView.removeFromSuperview()
             
-            
-                // HACER LA TRAINSICION DE LA LISTA DE ARRIBA A ABAJO Y VICEVERSA
-            
+
             
         }
         
@@ -458,7 +497,7 @@ class SplashViewController: UIViewController, UITableViewDelegate {
     func loadNewCourse(){
         HTTPReqManager.sharedInstance.loadAssignments("https://lifelong-learning-hub.appspot.com/_ah/api/subjectendpoint/v1/subject/course/" + HTTPReqManager.sharedInstance.persistance.courseId)
         
-         ESTA ES LA BUENA PORUQ ETSA FILTRADA POR USUARIO PERO PETA EN EL BACKEND
+//        ESTA ES LA BUENA PORUQ ETSA FILTRADA POR USUARIO PERO PETA EN EL BACKEND
 //      at org.ounl.lifelonglearninghub.db.ActivityEndpoint.listActivityCourseUser(ActivityEndpoint.java:123)
         
 //        PETA CON ESTA QUERY
